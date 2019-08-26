@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         val fragment = supportFragmentManager.findFragmentById(R.id.container)
         if (fragment == null) {
             changeFragment(navigation.selectedItemId)
-            println("xxxxx")
         }
     }
 

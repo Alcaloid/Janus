@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/menu_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Home"
+            />
+    <item
+            android:id="@+id/menu_loan"
+            android:icon="@drawable/loan"
+            android:title="Loan"
+            />
+    <item
+            android:id="@+id/menu_lean"
+            android:icon="@drawable/lend"
+            android:title="Lend"
+        />
+    <item
+            android:id="@+id/menu_notification"
+            android:icon="@drawable/ic_notifications_black_24dp"
+            android:title="Notification"
+        />
+    <item
+            android:id="@+id/menu_profile"
+            android:icon="@drawable/ic_dehaze_black_24dp"
+            android:title="Profile"
+        />
+
+
+</menu>

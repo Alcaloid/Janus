@@ -2,6 +2,7 @@ package com.codemobile.hackcatonapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.codemobile.hackcatonapp.lending.LendingFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -9,7 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         return@OnNavigationItemSelectedListener when (item.itemId) {
-            R.id.menu_home, R.id.menu_loan -> {
+            R.id.menu_home, R.id.menu_loan,R.id.menu_lean -> {
                 changeFragment(item.itemId)
                 true
             }
@@ -42,6 +43,11 @@ class MainActivity : AppCompatActivity() {
             R.id.menu_loan -> {
                 if (currentFragment is LoanFragment) return
                 LoanFragment()
+            }
+
+            R.id.menu_lean -> {
+                if (currentFragment is LendingFragment) return
+                LendingFragment()
             }
 
             else -> return

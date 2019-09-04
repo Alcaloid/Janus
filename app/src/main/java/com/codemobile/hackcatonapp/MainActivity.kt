@@ -2,7 +2,9 @@ package com.codemobile.hackcatonapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.codemobile.hackcatonapp.lending.LendingFragment
+import com.codemobile.hackcatonapp.fragment.HomeFragment
+import com.codemobile.hackcatonapp.fragment.LendingFragment
+import com.codemobile.hackcatonapp.fragment.LoanFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 

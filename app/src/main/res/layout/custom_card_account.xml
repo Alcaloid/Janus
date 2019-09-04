@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/cv_account"
               android:orientation="vertical"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:layout_width="match_parent"
               android:gravity="center"
         >
@@ -11,38 +11,58 @@
     <androidx.cardview.widget.CardView
             android:layout_width="300dp"
             android:layout_height="125dp"
-            android:layout_margin="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             app:cardCornerRadius="10dp">
 
-        <LinearLayout
+        <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:padding="10dp"
                 >
-
             <TextView
-                    android:id="@+id/txt_num_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:text="xxxx-xxxx-xx"
-                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status:"
+                    android:layout_toLeftOf="@+id/txt_status"
+                    />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/txt_status"
+                    android:text="UNKNOW"
+                    android:textColor="@color/colorPurple"
+                    android:layout_alignParentRight="true"
                     />
 
-            <TextView
-                    android:id="@+id/txt_money"
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="money"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:gravity="center_vertical"
-                    android:textColor="@color/colorBlack"
-                    />
-        </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/txt_status"
+                    >
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_limit"
+                        android:text="Limit: xxxx฿"
+                        android:textColor="@color/colorBlack"
+                        />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_interest"
+                        android:text="interest: x%"
+                        />
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txt_period"
+                        android:text="Period: x year"
+                        />
+            </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

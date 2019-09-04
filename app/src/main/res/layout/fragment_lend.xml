@@ -32,14 +32,15 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#EDE7F6"
-            android:layout_weight="0.65"
+            android:layout_weight="0.55"
             >
         <TextView
                 android:id="@+id/txt_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="To"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
                 />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -50,11 +51,11 @@
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
         <TextView
-                android:paddingTop="5dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="My Lending"
-                android:paddingLeft="10dp"
+                android:layout_marginLeft="10dp"
                 />
         <View
                 android:layout_width="match_parent"
@@ -67,7 +68,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.35"
+                android:layout_weight="0.45"
                 >
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_myLending"

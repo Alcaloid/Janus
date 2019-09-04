@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
-import kotlinx.android.synthetic.main.card_my_lending.view.*
+import kotlinx.android.synthetic.main.custom_card_account.view.*
 
 class AccountAdapter(val dataArrayList:ArrayList<String>) :RecyclerView.Adapter<AccountHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountHolder {

@@ -1,4 +1,4 @@
-package com.codemobile.mobilephonebuyersguide.database
+package com.codemobile.hackcatonapp.database
 
 import android.os.Handler
 import android.os.HandlerThread

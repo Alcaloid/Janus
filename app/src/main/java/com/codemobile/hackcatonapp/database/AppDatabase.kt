@@ -1,4 +1,4 @@
-package com.codemobile.mobilephonebuyersguide.database
+package com.codemobile.hackcatonapp.database
 
 import android.content.Context
 import android.util.Log
@@ -7,12 +7,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.codemobile.hackcatonapp.DATABASE_NAME
-import com.codemobile.hackcatonapp.model.LeandingModel
 
-@Database(entities = [LeandingModel::class], version = 1, exportSchema = true)
+@Database(entities = [DatabaseEntity::class], version = 1, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun favoriteDao(): FavoriteDAO
+    abstract fun favoriteDao(): LeaningDAO
 
     companion object {
         private val TAG: String by lazy { AppDatabase::class.java.simpleName }

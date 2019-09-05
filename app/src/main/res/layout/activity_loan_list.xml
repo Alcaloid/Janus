@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="15dp"
         tools:context=".LoanListActivity">
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="Lending"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
@@ -38,7 +37,7 @@
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:src="@drawable/scb_logo"
                     />
 
@@ -55,6 +54,7 @@
             android:id="@+id/amountSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="15dp"
             android:orientation="vertical">
 
         <TextView
@@ -104,6 +104,7 @@
     <LinearLayout
             android:id="@+id/laonListView"
             android:orientation="vertical"
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">HackcatonApp</string>
+    <string name="laon_list_limit">Limit:  %1f฿</string>
+    <string name="laon_list_interest">\%1d%</string>
+    <string name="laon_list_period">Period:  %1d month</string>
+    <string name="acceptance_terms">"I accept the "</string>
+    <string name="acceptance_terms_link"><u>Terms and Conditions</u></string>
 </resources>

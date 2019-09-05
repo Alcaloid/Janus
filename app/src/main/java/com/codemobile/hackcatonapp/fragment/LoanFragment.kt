@@ -6,22 +6,54 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-<<<<<<< HEAD:app/src/main/java/com/codemobile/hackcatonapp/fragment/LoanFragment.kt
-import com.codemobile.hackcatonapp.R
-=======
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.codemobile.hackcatonapp.LoanListActivity
 import kotlinx.android.synthetic.main.fragment_loan.*
->>>>>>> AL_Branch:app/src/main/java/com/codemobile/hackcatonapp/LoanFragment.kt
+import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.adapter.AccountAdapter
+import com.codemobile.hackcatonapp.model.LeandingModel
+import kotlinx.android.synthetic.main.fragment_lend.*
 
 class LoanFragment:Fragment() {
 
+    private val moneyAccountArray:ArrayList<String> = arrayListOf("100000","2000","10000")
+    private val lendingArrayList:ArrayList<LeandingModel> = arrayListOf()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_loan, container, false)
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        toLoanListBtn.setOnClickListener {
-            var intent = Intent(context, LoanListActivity::class.java)
+        setAccount(view)
+        setLending(view)
+        setOnAddLending()
+    }
+
+    private fun setLending(_view: View) {
+        val accountAdapter: AccountAdapter =
+            AccountAdapter(moneyAccountArray)
+        rcv_loan_account.let {
+            it.adapter = accountAdapter
+            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
+        }
+    }
+
+    private fun setOnAddLending() {
+        if (lendingArrayList.isEmpty()){
+            image_notLoanding.visibility = View.VISIBLE
+            txt_notLoan.visibility = View.VISIBLE
+        }
+        btn_toLoadlist.setOnClickListener {
+            val intent = Intent(context, LoanListActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    private fun setAccount(_view: View){
+        val accountAdapter: AccountAdapter =
+            AccountAdapter(moneyAccountArray)
+        rcv_myLoaning.let {
+            it.adapter = accountAdapter
+            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
         }
     }
 }

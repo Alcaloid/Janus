@@ -38,9 +38,12 @@ class LendingFragment: Fragment(){
     }
 
     private fun setOnAddLending() {
+        if (lendingArrayList.isEmpty()){
+            image_notLeanding.visibility = View.VISIBLE
+            txt_notLeanding.visibility = View.VISIBLE
+        }
         btn_addLending.setOnClickListener {
-            image_notLending.visibility = View.GONE
-            txt_notLeanding.visibility = View.GONE
+            //go to xxxx
         }
     }
 

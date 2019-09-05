@@ -3,16 +3,108 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-    <TextView
+    <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="A loan!"
-            />
+            android:background="@color/colorPurple"
+            >
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/scb_logo"
+                    />
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Loaning"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#EDE7F6"
+            android:layout_weight="0.55"
+            >
+        <TextView
+                android:id="@+id/txt_loan_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="To"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                />
 
-    <Button
-            android:id="@+id/toLoanListBtn"
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_loan_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+    <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LoanList"/>
+            android:text="My Loaning"
+            android:layout_marginLeft="10dp"
+            />
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBlack"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="50dp"
+            />
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            >
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_myLoaning"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+        <ImageView
+                android:id="@+id/image_notLoanding"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/loan"
+                android:visibility="gone"
+                android:tint="#C9C9C9"
+                />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image_notLoanding"
+                android:layout_centerHorizontal="true"
+                android:text="No Loaning"
+                android:visibility="gone"
+                android:textColor="#C9C9C9"
+                android:id="@+id/txt_notLoan"/>
+    </RelativeLayout>
+    <Button
+            android:id="@+id/btn_toLoadlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Lending"
+            android:background="@drawable/corner_button"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="10dp"
+            />
 
 </LinearLayout>

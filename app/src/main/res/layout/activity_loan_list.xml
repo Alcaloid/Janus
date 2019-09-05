@@ -23,7 +23,8 @@
                     android:layout_weight="1"
                     android:src="@drawable/ic_arrow_back_black_24dp"
                     android:tint="#FFFFFF"
-                    tools:visibility="visible"/>
+                    tools:visibility="visible"
+                    android:id="@+id/btn_image_backToLoan"/>
 
             <TextView
                     android:layout_width="match_parent"

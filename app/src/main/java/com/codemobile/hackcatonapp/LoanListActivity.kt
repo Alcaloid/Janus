@@ -36,6 +36,10 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
         rvLoanListView.adapter = loanListAdaptor
         rvLoanListView.layoutManager = LinearLayoutManager(this)
 
+        btn_image_backToLoan.setOnClickListener {
+            finish()
+        }
+
         feedLoanData()
     }
 

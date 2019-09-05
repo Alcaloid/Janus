@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
-import kotlinx.android.synthetic.main.custom_card_account.view.*
+import com.codemobile.hackcatonapp.model.LeandingModel
+import kotlinx.android.synthetic.main.card_my_lending.view.*
 
-class LeandingAdapter(val dataArrayList:ArrayList<String>) : RecyclerView.Adapter<LeandingHolder>(){
+class LeandingAdapter(val dataArrayList:ArrayList<LeandingModel>) : RecyclerView.Adapter<LeandingHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeandingHolder {
         return LeandingHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -23,14 +24,17 @@ class LeandingAdapter(val dataArrayList:ArrayList<String>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
-        holder.account.text = "xxx-xxx000-1"
-        holder.money.text   = dataArrayList[position]
+        holder.limit.text = dataArrayList[position].limit.toString()
+        holder.interest.text = dataArrayList[position].interrest.toString()
+        holder.period.text = dataArrayList[position].peroid
+        holder.status.text = dataArrayList[position].status
     }
 
 }
 
 class LeandingHolder(view: View): RecyclerView.ViewHolder(view) {
-
-    val account = view.txt_num_account
-    val money   = view.txt_money
+    val limit = view.txt_limit
+    val interest = view.txt_interest
+    val period = view.txt_period
+    val status = view.txt_status
 }

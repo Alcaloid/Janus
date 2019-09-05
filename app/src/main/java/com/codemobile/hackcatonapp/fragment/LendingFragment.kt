@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
+import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.model.LeandingModel
 import kotlinx.android.synthetic.main.fragment_lend.*
 
@@ -29,10 +30,10 @@ class LendingFragment: Fragment(){
     }
 
     private fun setLending(_view: View) {
-        val accountAdapter: AccountAdapter =
-            AccountAdapter(moneyAccountArray)
-        rcv_account.let {
-            it.adapter = accountAdapter
+        val leandingAdapter: LeandingAdapter =
+            LeandingAdapter(lendingArrayList)
+        rcv_myLending.let {
+            it.adapter = leandingAdapter
             it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
         }
     }
@@ -44,6 +45,8 @@ class LendingFragment: Fragment(){
         }
         btn_addLending.setOnClickListener {
             //go to xxxx
+            lendingArrayList.add(LeandingModel(100000,1,"3 mouth","Wating"))
+
         }
     }
 

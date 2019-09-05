@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".LoanDetailActivity"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DETAIL"
+            android:paddingBottom="10dp"/>
+
+    <androidx.cardview.widget.CardView
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            android:background="#00FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:background="@drawable/rounded_border_edittext"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15dp">
+
+            <TextView
+                    android:id="@+id/lonerName"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waramporm Yangkijkarn"/>
+
+            <LinearLayout
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:id="@+id/limitLoan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Limit:  100,000฿"/>
+
+                <TextView
+                        android:id="@+id/interestLoan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Interest:  3%"/>
+
+                <TextView
+                        android:id="@+id/periodLoan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Period:  3 month"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <CheckBox
+                android:id="@+id/acceptTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#C4C4C4"
+                tools:checked="true" />
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/acceptance_terms"/>
+
+        <TextView
+                android:id="@+id/termsAndCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/acceptance_terms_link"
+                android:textStyle="bold"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

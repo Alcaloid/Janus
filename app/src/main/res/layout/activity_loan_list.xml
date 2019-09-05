@@ -7,7 +7,50 @@
         android:orientation="vertical"
         android:padding="15dp"
         tools:context=".LoanListActivity">
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPurple"
+            >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                >
 
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_arrow_back_black_24dp"
+                    android:tint="#FFFFFF"
+                    tools:visibility="visible"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Lending"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    />
+
+            <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:src="@drawable/scb_logo"
+                    />
+
+        </LinearLayout>
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                >
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
             android:id="@+id/amountSearchView"
             android:layout_width="match_parent"

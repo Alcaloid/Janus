@@ -12,12 +12,11 @@ import kotlinx.android.synthetic.main.fragment_loan.*
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.model.LeandingModel
-import kotlinx.android.synthetic.main.fragment_lend.*
 
 class LoanFragment:Fragment() {
 
     private val moneyAccountArray:ArrayList<String> = arrayListOf("100000","2000","10000")
-    private val lendingArrayList:ArrayList<LeandingModel> = arrayListOf()
+    private val loaningArrayList:ArrayList<LeandingModel> = arrayListOf()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_loan, container, false)
     }
@@ -29,18 +28,17 @@ class LoanFragment:Fragment() {
     }
 
     private fun setLending(_view: View) {
-        val accountAdapter: AccountAdapter =
-            AccountAdapter(moneyAccountArray)
-        rcv_loan_account.let {
-            it.adapter = accountAdapter
-            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
+        rcv_myLoaning.let {
         }
     }
 
     private fun setOnAddLending() {
-        if (lendingArrayList.isEmpty()){
+        if (loaningArrayList.isEmpty()){
             image_notLoanding.visibility = View.VISIBLE
             txt_notLoan.visibility = View.VISIBLE
+        }else{
+            image_notLoanding.visibility = View.GONE
+            txt_notLoan.visibility = View.GONE
         }
         btn_toLoadlist.setOnClickListener {
             val intent = Intent(context, LoanListActivity::class.java)
@@ -51,7 +49,7 @@ class LoanFragment:Fragment() {
     private fun setAccount(_view: View){
         val accountAdapter: AccountAdapter =
             AccountAdapter(moneyAccountArray)
-        rcv_myLoaning.let {
+        rcv_loan_account.let {
             it.adapter = accountAdapter
             it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
         }

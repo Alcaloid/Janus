@@ -12,7 +12,7 @@ class LeandingAdapter(val dataArrayList:ArrayList<LeandingModel>) : RecyclerView
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeandingHolder {
         return LeandingHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.custom_card_account,
+                R.layout.card_my_lending,
                 parent,
                 false
             )
@@ -24,6 +24,7 @@ class LeandingAdapter(val dataArrayList:ArrayList<LeandingModel>) : RecyclerView
     }
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
+        dataArrayList.forEach { println(it) }
         holder.limit.text = dataArrayList[position].limit.toString()
         holder.interest.text = dataArrayList[position].interrest.toString()
         holder.period.text = dataArrayList[position].peroid

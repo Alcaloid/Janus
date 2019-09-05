@@ -12,10 +12,12 @@ import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.model.LeandingModel
 import kotlinx.android.synthetic.main.fragment_lend.*
 
-class LendingFragment: Fragment(){
+class LendingFragment : Fragment() {
 
-    private val moneyAccountArray:ArrayList<String> = arrayListOf("100000","2000","10000")
-    private val lendingArrayList:ArrayList<LeandingModel> = arrayListOf()
+    private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
+    private val lendingArrayList: ArrayList<LeandingModel> = arrayListOf()
+    private var leandingAdapter: LeandingAdapter? = null
+    private var accountAdapter: AccountAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lend, container, false)
@@ -30,32 +32,32 @@ class LendingFragment: Fragment(){
     }
 
     private fun setLending(_view: View) {
-        val leandingAdapter: LeandingAdapter =
+        leandingAdapter =
             LeandingAdapter(lendingArrayList)
         rcv_myLending.let {
             it.adapter = leandingAdapter
-            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
+            it.layoutManager = LinearLayoutManager(_view.context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 
     private fun setOnAddLending() {
-        if (lendingArrayList.isEmpty()){
+        if (lendingArrayList.isEmpty()) {
             image_notLeanding.visibility = View.VISIBLE
             txt_notLeanding.visibility = View.VISIBLE
         }
         btn_addLending.setOnClickListener {
             //go to xxxx
-            lendingArrayList.add(LeandingModel(100000,1,"3 mouth","Wating"))
-
+//            lendingArrayList.add(LeandingModel(100000, 1, "3 mouth", "Wating"))
+//            leandingAdapter?.notifyDataSetChanged()
         }
     }
 
-    private fun setAccount(_view: View){
-        val accountAdapter: AccountAdapter =
+    private fun setAccount(_view: View) {
+        accountAdapter =
             AccountAdapter(moneyAccountArray)
         rcv_account.let {
             it.adapter = accountAdapter
-            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
+            it.layoutManager = LinearLayoutManager(_view.context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 }

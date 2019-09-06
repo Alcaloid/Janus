@@ -12,21 +12,13 @@ import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.RESULT_CODE_ADD_LENDING
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
-import com.codemobile.hackcatonapp.database.AppDatabase
-import com.codemobile.hackcatonapp.database.workerThread
 import com.codemobile.hackcatonapp.model.LeandingModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import kotlinx.android.synthetic.main.fragment_lend.*
 
 class LendingFragment : Fragment() {
 
     private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
     private val lendingArrayList: ArrayList<LeandingModel> = arrayListOf()
-    private var appDatabase: AppDatabase? = null
-    var mCMWorkerThread: workerThread = workerThread("favoritedatabase").also {
-        it.start()
-    }
     private var leandingAdapter: LeandingAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
@@ -37,17 +29,9 @@ class LendingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init(view)
-        loadLending()
         setAccount(view)
         setLending(view)
         setOnAddLending()
-    }
-
-    private fun init(view: View) {
-        appDatabase = AppDatabase.getInstance(view.context).also {
-            it.openHelper.readableDatabase
-        }
     }
 
     private fun setLending(_view: View) {
@@ -95,18 +79,4 @@ class LendingFragment : Fragment() {
         }
     }
 
-    fun loadLending(){
-        val task = Runnable {
-            val result = appDatabase?.favoriteDao()?.queryFavorites()
-            val gson = Gson()
-            val json = gson.toJson(result)
-            val data =
-                gson.fromJson<List<LeandingModel>>(
-                    json,
-                    object : TypeToken<List<LeandingModel>>() {}.type
-                )
-            lendingArrayList.addAll(data)
-        }
-        mCMWorkerThread.postTask(task)
-    }
 }

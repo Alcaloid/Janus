@@ -5,15 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.AddLendingActivity
-import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.RESULT_CODE_ADD_LENDING
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.model.LeandingModel
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_lend.*
+
+
 
 class LendingFragment : Fragment() {
 
@@ -22,13 +25,19 @@ class LendingFragment : Fragment() {
     private var leandingAdapter: LeandingAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
+    lateinit var database: FirebaseFirestore
+    lateinit var UserRef: CollectionReference
+    lateinit var LeandingRef: CollectionReference
+    private var hashMap: HashMap<Any, Any> = HashMap()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_lend, container, false)
+        return inflater.inflate(com.codemobile.hackcatonapp.R.layout.fragment_lend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
         setAccount(view)
         setLending(view)
         setOnAddLending()
@@ -50,24 +59,30 @@ class LendingFragment : Fragment() {
         }
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
-            //go to xxxx
-            startActivityForResult(Intent(context,AddLendingActivity::class.java),1)
+            startActivityForResult(Intent(context, AddLendingActivity::class.java), 1)
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1){
-            if (resultCode == RESULT_CODE_ADD_LENDING){
-                val result = data?.getSerializableExtra("id") as LeandingModel
-                lendingArrayList.add(result)
-                if (lendingArrayList.isNotEmpty()){
-                    image_notLeanding.visibility = View.GONE
-                    txt_notLeanding.visibility = View.GONE
+        if (requestCode == 1) {
+            LeandingRef.whereEqualTo("Lender", "0").get()
+                .addOnSuccessListener { documentSnapshot ->
+                    documentSnapshot.forEach {
+                        println(it.data)
+                    }
+                    leandingAdapter?.notifyDataSetChanged()
                 }
-                leandingAdapter?.notifyDataSetChanged()
-            }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(context, "Read Failed", Toast.LENGTH_SHORT).show()
+                }
         }
+    }
+
+    fun init() {
+        database = FirebaseFirestore.getInstance()
+        UserRef = database.collection("User")
+        LeandingRef = database.collection("Leanding")
     }
 
     private fun setAccount(_view: View) {

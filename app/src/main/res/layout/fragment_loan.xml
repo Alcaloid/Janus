@@ -105,6 +105,7 @@
             android:background="@drawable/corner_button"
             android:layout_marginHorizontal="40dp"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/colorPurple"
             />
 
 </LinearLayout>

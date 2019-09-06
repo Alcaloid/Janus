@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.AddLendingActivity
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.RESULT_CODE_ADD_LENDING
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.database.AppDatabase
@@ -66,11 +67,22 @@ class LendingFragment : Fragment() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
             //go to xxxx
-            startActivity(Intent(context,AddLendingActivity::class.java))
-            lendingArrayList.add(LeandingModel(100000, 1, "3 mouth", "Wating"))
-            leandingAdapter?.notifyDataSetChanged()
-            image_notLeanding.visibility = View.GONE
-            txt_notLeanding.visibility = View.GONE
+            startActivityForResult(Intent(context,AddLendingActivity::class.java),1)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1){
+            if (resultCode == RESULT_CODE_ADD_LENDING){
+                val result = data?.getSerializableExtra("id") as LeandingModel
+                lendingArrayList.add(result)
+                if (lendingArrayList.isNotEmpty()){
+                    image_notLeanding.visibility = View.GONE
+                    txt_notLeanding.visibility = View.GONE
+                }
+                leandingAdapter?.notifyDataSetChanged()
+            }
         }
     }
 

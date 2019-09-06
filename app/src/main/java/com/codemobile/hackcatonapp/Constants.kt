@@ -5,7 +5,7 @@ const val PRICE_HIGHTOLOW = "Price high to low"
 const val RATE_5_1 = "Rate 5 to 1"
 const val INFORMATION = "information"
 const val DATABASE_NAME = "MobileFavorite"
-
+const val RESULT_CODE_ADD_LENDING = 1
 //Room
 const val QUERY_ALLFAV = "query_favorite"
 const val ADD_FAV = "add_favorite"

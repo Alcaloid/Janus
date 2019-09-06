@@ -66,9 +66,11 @@ class LendingFragment : Fragment() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
             //go to xxxx
-//            lendingArrayList.add(LeandingModel(100000, 1, "3 mouth", "Wating"))
-//            leandingAdapter?.notifyDataSetChanged()
             startActivity(Intent(context,AddLendingActivity::class.java))
+            lendingArrayList.add(LeandingModel(100000, 1, "3 mouth", "Wating"))
+            leandingAdapter?.notifyDataSetChanged()
+            image_notLeanding.visibility = View.GONE
+            txt_notLeanding.visibility = View.GONE
         }
     }
 

@@ -10,6 +10,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var leandingFragment: LendingFragment
+    lateinit var loanFragment: LoanFragment
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         return@OnNavigationItemSelectedListener when (item.itemId) {
             R.id.menu_home, R.id.menu_loan,R.id.menu_lean -> {
@@ -25,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        leandingFragment = LendingFragment()
+        loanFragment = LoanFragment()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
         val fragment = supportFragmentManager.findFragmentById(R.id.container)
@@ -44,12 +49,12 @@ class MainActivity : AppCompatActivity() {
 
             R.id.menu_loan -> {
                 if (currentFragment is LoanFragment) return
-                LoanFragment()
+                loanFragment
             }
 
             R.id.menu_lean -> {
                 if (currentFragment is LendingFragment) return
-                LendingFragment()
+                leandingFragment
             }
 
             else -> return

@@ -11,12 +11,12 @@ import com.codemobile.hackcatonapp.LoanListActivity
 import kotlinx.android.synthetic.main.fragment_loan.*
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
-import com.codemobile.hackcatonapp.model.LeandingModel
+import com.codemobile.hackcatonapp.model.LendingModel
 
 class LoanFragment:Fragment() {
 
     private val moneyAccountArray:ArrayList<String> = arrayListOf("100000","2000","10000")
-    private val loaningArrayList:ArrayList<LeandingModel> = arrayListOf()
+    private val loaningArrayList:ArrayList<LendingModel> = arrayListOf()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_loan, container, false)
     }

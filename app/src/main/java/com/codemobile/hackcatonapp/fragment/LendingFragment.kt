@@ -7,51 +7,54 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.AddLendingActivity
-import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.USER_LIST
+import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
-import com.codemobile.hackcatonapp.database.AppDatabase
-import com.codemobile.hackcatonapp.database.workerThread
-import com.codemobile.hackcatonapp.model.LeandingModel
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.codemobile.hackcatonapp.lendingactivity.ApproveActivity
+import com.codemobile.hackcatonapp.model.LendingModel
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_lend.*
 
-class LendingFragment : Fragment() {
+interface QueryUser{
+    fun queryUserData(userArrayList:ArrayList<String>)
+}
+
+class LendingFragment : Fragment(){
 
     private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
-    private val lendingArrayList: ArrayList<LeandingModel> = arrayListOf()
-    private var appDatabase: AppDatabase? = null
-    var mCMWorkerThread: workerThread = workerThread("favoritedatabase").also {
-        it.start()
-    }
+    private val lendingArrayList: ArrayList<LendingModel> = arrayListOf()
     private var leandingAdapter: LeandingAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
+    lateinit var database: FirebaseFirestore
+    lateinit var LeandingRef: CollectionReference
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_lend, container, false)
+        return inflater.inflate(com.codemobile.hackcatonapp.R.layout.fragment_lend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init(view)
-        loadLending()
+        init()
         setAccount(view)
         setLending(view)
+//        checkLendingData()
+        notificationUserGetLending()
         setOnAddLending()
-    }
-
-    private fun init(view: View) {
-        appDatabase = AppDatabase.getInstance(view.context).also {
-            it.openHelper.readableDatabase
-        }
     }
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList)
+            LeandingAdapter(lendingArrayList,object :QueryUser{
+                override fun queryUserData(userArrayList:ArrayList<String>) {
+                    val intent:Intent = Intent(context,ApproveActivity::class.java)
+                    intent.putExtra(USER_LIST,userArrayList)
+                    startActivity(intent)
+                }
+            })
         rcv_myLending.let {
             it.adapter = leandingAdapter
             it.layoutManager = LinearLayoutManager(_view.context)
@@ -59,19 +62,57 @@ class LendingFragment : Fragment() {
     }
 
     private fun setOnAddLending() {
-        if (lendingArrayList.isEmpty()) {
-            image_notLeanding.visibility = View.VISIBLE
-            txt_notLeanding.visibility = View.VISIBLE
-        }
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
-            //go to xxxx
-            startActivity(Intent(context,AddLendingActivity::class.java))
-            lendingArrayList.add(LeandingModel(100000, 1, "3 mouth", "Wating"))
-            leandingAdapter?.notifyDataSetChanged()
-            image_notLeanding.visibility = View.GONE
-            txt_notLeanding.visibility = View.GONE
+            startActivity(Intent(context, AddLendingActivity::class.java))
         }
+    }
+
+    fun checkLendingData(){
+        //query data to add array first time
+        LeandingRef.whereEqualTo("lender", "0").get().addOnSuccessListener { documentSnapshot ->
+            lendingArrayList.clear()
+            documentSnapshot.forEach {
+                //change Query data to LeandingModel
+                val result = it.toObject(LendingModel::class.java)
+                lendingArrayList.add(result)
+            }
+            if (lendingArrayList.isNotEmpty()){
+                image_notLeanding.visibility = View.GONE
+                txt_notLeanding.visibility = View.GONE
+            }else{
+                image_notLeanding.visibility = View.VISIBLE
+                txt_notLeanding.visibility = View.VISIBLE
+            }
+            lendingArrayList.forEach {
+                println("Query:"+it)
+            }
+            leandingAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    fun notificationUserGetLending(){
+        //this notification all of them!!
+        LeandingRef.whereEqualTo("lender", "0").addSnapshotListener { querySnapshot, e ->
+            if (e != null) {
+                return@addSnapshotListener
+            }
+            lendingArrayList.clear()
+            querySnapshot?.forEach {
+                val result = it.toObject(LendingModel::class.java)
+//                println("result:"+result)
+                lendingArrayList.add(result)
+            }
+            lendingArrayList.forEach {
+                println("Data:"+it)
+            }
+            leandingAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    fun init() {
+        database = FirebaseFirestore.getInstance()
+        LeandingRef = database.collection("Leanding")
     }
 
     private fun setAccount(_view: View) {
@@ -83,18 +124,4 @@ class LendingFragment : Fragment() {
         }
     }
 
-    fun loadLending(){
-        val task = Runnable {
-            val result = appDatabase?.favoriteDao()?.queryFavorites()
-            val gson = Gson()
-            val json = gson.toJson(result)
-            val data =
-                gson.fromJson<List<LeandingModel>>(
-                    json,
-                    object : TypeToken<List<LeandingModel>>() {}.type
-                )
-            lendingArrayList.addAll(data)
-        }
-        mCMWorkerThread.postTask(task)
-    }
 }

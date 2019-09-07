@@ -9,7 +9,9 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".AddLendingActivity">
+        <activity android:name=".lendingactivity.ApproveActivity">
+        </activity>
+        <activity android:name=".lendingactivity.AddLendingActivity">
         </activity>
         <activity android:name=".LoanDetailActivity">
         </activity>

@@ -1,8 +1,10 @@
-package com.codemobile.hackcatonapp
+package com.codemobile.hackcatonapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.model.Loan
 import kotlinx.android.synthetic.main.activity_loan_detail.*
 import java.text.DecimalFormat
 
@@ -24,7 +26,6 @@ class LoanDetailActivity : AppCompatActivity() {
         submitLoanBtn.setOnClickListener {
             Log.d("test", "submitLoanBtn click")
         }
-
 
     }
 }

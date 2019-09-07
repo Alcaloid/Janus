@@ -3,7 +3,7 @@ package com.codemobile.hackcatonapp.lendingactivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.USER_ID
+import com.codemobile.hackcatonapp.USER_ID_LENDER
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -36,7 +36,7 @@ class AddLendingActivity : AppCompatActivity() {
     fun addMyLeanderToDatabase() {
         val id = LeandingRef.document().getId()
         hashMap = hashMapOf(
-            "lender" to USER_ID,
+            "lender" to USER_ID_LENDER,
             "limit" to 1000,
             "interest" to 3,
             "period" to "10 Year",
@@ -49,7 +49,7 @@ class AddLendingActivity : AppCompatActivity() {
     }
 
     fun updateMyLeanderInUser(id: String) {
-        UserRef.document(USER_ID)
+        UserRef.document(USER_ID_LENDER)
             .update("UserLeander", FieldValue.arrayUnion(id))
     }
 }

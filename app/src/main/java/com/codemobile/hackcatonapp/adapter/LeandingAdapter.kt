@@ -33,6 +33,7 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
         setStatusText(position)
         holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
+        holder.name.visibility = View.GONE
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"
         holder.status.setTextColor(txt_color)
@@ -59,6 +60,7 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
 }
 
 class LeandingHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val name = view.txt_card_lender_lenderName
     val limit = view.txt_limit
     val interest = view.txt_interest
     val period = view.txt_period

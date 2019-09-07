@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HackcatonApp</string>
+    <string name="app_name">EasyLoan</string>
     <string name="loan_list_limit">Limit:  %1$s฿</string>
     <string name="laon_list_interest">Interest:  %1$d%%</string>
     <string name="loan_list_period">Period:  %1$d month</string>

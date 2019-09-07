@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.fragment.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 
-class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>) : RecyclerView.Adapter<LeandingHolder>(){
+class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: QueryUser) : RecyclerView.Adapter<LeandingHolder>(){
 
     var txt_color:Int = Color.RED
-    var isPeopleGet = false
+    var statusText:String = "Waiting"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeandingHolder {
         return LeandingHolder(
@@ -32,20 +33,24 @@ class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>) : RecyclerView.
         holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"
-        holder.status.text = dataArrayList[position].status
+        holder.status.text = statusText
         holder.status.setTextColor(txt_color)
+        
+        if (dataArrayList[position].status){
+            statusText = "Approve"
+            txt_color = Color.GREEN
+        }else if(dataArrayList[position].userGet.isNotEmpty()){
+            statusText = "Need Approve"
+            txt_color = Color.YELLOW
+        }else{
+            statusText = "Waiting"
+            txt_color = Color.RED
+        }
 
         holder.itemView.setOnClickListener {
-            if (isPeopleGet){
-                dataArrayList[position].status = "LENDED"
-                txt_color = Color.GREEN
-                isPeopleGet = false
-            }else{
-                dataArrayList[position].status = "NEED APPROVE"
-                txt_color = Color.YELLOW
-                isPeopleGet = true
+            if (dataArrayList[position].userGet.isNotEmpty()){
+                queryUser.queryUserData(dataArrayList[position].userGet)
             }
-            notifyDataSetChanged()
         }
     }
 

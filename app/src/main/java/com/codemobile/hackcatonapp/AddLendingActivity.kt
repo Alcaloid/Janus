@@ -12,7 +12,7 @@ class AddLendingActivity : AppCompatActivity() {
     lateinit var database: FirebaseFirestore
     lateinit var UserRef: CollectionReference
     lateinit var LeandingRef: CollectionReference
-    private var hashMap: HashMap<Any, Any> = HashMap()
+    private var hashMap: HashMap<Any, Any?> = HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +20,7 @@ class AddLendingActivity : AppCompatActivity() {
 
         init()
         btn_add_card_lending.setOnClickListener {
-//            addMyLeanderToDatabase()
+            addMyLeanderToDatabase()
             finish()
         }
     }
@@ -38,8 +38,9 @@ class AddLendingActivity : AppCompatActivity() {
             "limit"  to 1000,
             "interest" to 3,
             "period" to "10 Year",
-            "status" to "Waiting",
-            "userGet" to arrayListOf(null)
+            "status" to false,
+            "description" to "Example",
+            "userGet" to arrayListOf<String>()
         )
         LeandingRef.document(id).set(hashMap)
         updateMyLeanderInUser(id)

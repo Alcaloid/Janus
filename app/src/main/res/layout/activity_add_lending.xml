@@ -87,6 +87,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/rounded_border_edittext"
                 android:layout_width="match_parent"
+                android:gravity="top"
                 android:layout_height="150dp"/>
 
         <LinearLayout

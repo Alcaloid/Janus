@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/colorApp"
             >
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/scb_logo"
                     />
+
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -28,13 +31,15 @@
                     />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#EDE7F6"
-            android:layout_weight="1"
+            android:layout_weight="0.57"
             >
+
         <TextView
                 android:id="@+id/txt_header"
                 android:layout_width="match_parent"
@@ -46,59 +51,64 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_account"
-                tools:listitem="@layout/custom_card_account"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 >
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
+    <TextView
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Lending"
+            android:layout_marginLeft="10dp"
+            />
+
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorBlack"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="50dp"
+            />
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.43"
+            >
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_myLending"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+                android:id="@+id/image_notLeanding"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/lend"
+                android:visibility="gone"
+                android:tint="#C9C9C9"
+                />
+
         <TextView
-                android:layout_marginTop="5dp"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Lending"
-                android:layout_marginLeft="10dp"
-                />
-        <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorBlack"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginRight="50dp"
-                />
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.40"
-                >
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_myLending"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                android:layout_below="@+id/image_notLeanding"
+                android:layout_centerHorizontal="true"
+                android:text="No Lending"
+                android:visibility="gone"
+                android:textColor="#C9C9C9"
+                android:id="@+id/txt_notLeanding"/>
+    </RelativeLayout>
 
-            </androidx.recyclerview.widget.RecyclerView>
-            <ImageView
-                    android:id="@+id/image_notLeanding"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/lend"
-                    android:visibility="gone"
-                    android:tint="#C9C9C9"
-                    />
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image_notLeanding"
-                    android:layout_centerHorizontal="true"
-                    android:text="No Lending"
-                    android:visibility="gone"
-                    android:textColor="#C9C9C9"
-                    android:id="@+id/txt_notLeanding"/>
-        </RelativeLayout>
     <Button
             android:id="@+id/btn_addLending"
             android:layout_width="match_parent"
@@ -107,6 +117,7 @@
             android:background="@drawable/corner_button"
             android:layout_marginHorizontal="40dp"
             android:layout_marginBottom="10dp"
+            android:textColor="@color/colorApp"
             />
 
 </LinearLayout>

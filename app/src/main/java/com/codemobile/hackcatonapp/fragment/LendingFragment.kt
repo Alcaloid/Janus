@@ -2,15 +2,16 @@ package com.codemobile.hackcatonapp.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.AddLendingActivity
+import com.codemobile.hackcatonapp.USER_LIST
+import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
+import com.codemobile.hackcatonapp.lendingactivity.ApproveActivity
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,7 +41,7 @@ class LendingFragment : Fragment(){
         init()
         setAccount(view)
         setLending(view)
-        checkLendingData()
+//        checkLendingData()
         notificationUserGetLending()
         setOnAddLending()
     }
@@ -49,7 +50,9 @@ class LendingFragment : Fragment(){
         leandingAdapter =
             LeandingAdapter(lendingArrayList,object :QueryUser{
                 override fun queryUserData(userArrayList:ArrayList<String>) {
-                    startActivityForResult(Intent(context, AddLendingActivity::class.java), 2)
+                    val intent:Intent = Intent(context,ApproveActivity::class.java)
+                    intent.putExtra(USER_LIST,userArrayList)
+                    startActivity(intent)
                 }
             })
         rcv_myLending.let {
@@ -61,19 +64,12 @@ class LendingFragment : Fragment(){
     private fun setOnAddLending() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
-            startActivityForResult(Intent(context, AddLendingActivity::class.java), 1)
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            checkLendingData()
+            startActivity(Intent(context, AddLendingActivity::class.java))
         }
     }
 
     fun checkLendingData(){
-        //query data to add array
+        //query data to add array first time
         LeandingRef.whereEqualTo("lender", "0").get().addOnSuccessListener { documentSnapshot ->
             lendingArrayList.clear()
             documentSnapshot.forEach {
@@ -88,11 +84,15 @@ class LendingFragment : Fragment(){
                 image_notLeanding.visibility = View.VISIBLE
                 txt_notLeanding.visibility = View.VISIBLE
             }
+            lendingArrayList.forEach {
+                println("Query:"+it)
+            }
             leandingAdapter?.notifyDataSetChanged()
         }
     }
 
     fun notificationUserGetLending(){
+        //this notification all of them!!
         LeandingRef.whereEqualTo("lender", "0").addSnapshotListener { querySnapshot, e ->
             if (e != null) {
                 return@addSnapshotListener
@@ -100,7 +100,11 @@ class LendingFragment : Fragment(){
             lendingArrayList.clear()
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
+//                println("result:"+result)
                 lendingArrayList.add(result)
+            }
+            lendingArrayList.forEach {
+                println("Data:"+it)
             }
             leandingAdapter?.notifyDataSetChanged()
         }

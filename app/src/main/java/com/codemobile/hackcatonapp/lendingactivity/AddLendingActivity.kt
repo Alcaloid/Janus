@@ -1,7 +1,8 @@
-package com.codemobile.hackcatonapp
+package com.codemobile.hackcatonapp.lendingactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.codemobile.hackcatonapp.R
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore

@@ -85,14 +85,106 @@
                         android:layout_alignStart="@+id/main_container"/>
 
             </FrameLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                    tools:itemCount="1"
-                    tools:listitem="@layout/custom_card_home"
+            <LinearLayout
+                    android:layout_margin="20dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-            </androidx.recyclerview.widget.RecyclerView>
 
+                    <LinearLayout
+                            android:layout_margin="1dp"
+                            android:padding="10dp"
+                            android:background="@drawable/corner_border"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
+                        <RelativeLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                            <ImageView
+                                    android:layout_marginTop="6dp"
+                                    android:layout_marginRight="10dp"
+                                    android:id="@+id/passbook"
+                                    android:layout_gravity="bottom"
+                                    android:src="@drawable/passbook"
+                                    android:layout_width="20dp"
+                                    android:layout_height="15dp"/>
+
+                            <TextView
+                                    android:textSize="18sp"
+                                    android:layout_toRightOf="@id/passbook"
+                                    android:id="@+id/saving"
+                                    android:text="Saving"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+
+                            <TextView
+                                    android:layout_marginTop="4dp"
+                                    android:layout_toRightOf="@id/passbook"
+                                    android:id="@+id/accountNumber"
+                                    android:text="xxx-xxx555-5"
+                                    android:layout_below="@+id/saving"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                        </RelativeLayout>
+                        <TextView
+                                android:layout_gravity="right"
+                                android:id="@+id/balance"
+                                android:textSize="20sp"
+                                android:text="10,000"
+                                android:layout_below="@+id/balance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <LinearLayout
+                                android:layout_marginTop="15dp"
+                                android:background="#B4B4B4"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"/>
+
+                        <TextView
+                                android:layout_marginTop="5dp"
+                                android:layout_gravity="left"
+                                android:textSize="11sp"
+                                android:text="Lastest transections"
+                                android:layout_below="@+id/balance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                            <TextView
+                                    android:layout_marginLeft="10dp"
+                                    android:id="@+id/date"
+                                    android:layout_marginTop="5dp"
+                                    android:textSize="11sp"
+                                    android:text="22 Aug"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            <TextView
+                                    android:id="@+id/lasttransection"
+                                    android:layout_marginTop="5dp"
+                                    android:layout_alignParentRight="true"
+                                    android:textSize="11sp"
+                                    android:text="Loaning out: 1,000"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                <Button
+                        android:layout_marginTop="250dp"
+                        android:id="@+id/btn_toLoadlist"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorApp"
+                        android:text="ADD ACCOUNT"
+                        android:background="@drawable/corner_button"
+                        android:layout_marginHorizontal="40dp"
+                        android:layout_marginBottom="20dp"/>
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 </LinearLayout>

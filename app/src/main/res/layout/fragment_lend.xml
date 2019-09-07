@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -29,10 +30,10 @@
     </androidx.appcompat.widget.Toolbar>
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#EDE7F6"
-            android:layout_weight="0.55"
+            android:layout_weight="1"
             >
         <TextView
                 android:id="@+id/txt_header"
@@ -45,8 +46,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_account"
+                tools:listitem="@layout/custom_card_account"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
@@ -68,7 +70,7 @@
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.45"
+                android:layout_weight="0.40"
                 >
             <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rcv_myLending"

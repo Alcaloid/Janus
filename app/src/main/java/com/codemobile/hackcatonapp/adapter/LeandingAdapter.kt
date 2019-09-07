@@ -30,14 +30,22 @@ class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: Q
     }
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
+        setStatusText(position)
         holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"
-        holder.status.text = statusText
         holder.status.setTextColor(txt_color)
-        
+        holder.status.text = statusText
+        holder.itemView.setOnClickListener {
+            if (dataArrayList[position].userGet.isNotEmpty()&&!dataArrayList[position].status){
+                queryUser.queryUserData(dataArrayList[position].userGet)
+            }
+        }
+    }
+
+    fun setStatusText(position: Int){
         if (dataArrayList[position].status){
-            statusText = "Approve"
+            statusText = "Lending"
             txt_color = Color.GREEN
         }else if(dataArrayList[position].userGet.isNotEmpty()){
             statusText = "Need Approve"
@@ -46,14 +54,7 @@ class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: Q
             statusText = "Waiting"
             txt_color = Color.RED
         }
-
-        holder.itemView.setOnClickListener {
-            if (dataArrayList[position].userGet.isNotEmpty()){
-                queryUser.queryUserData(dataArrayList[position].userGet)
-            }
-        }
     }
-
 }
 
 class LeandingHolder(view: View): RecyclerView.ViewHolder(view) {

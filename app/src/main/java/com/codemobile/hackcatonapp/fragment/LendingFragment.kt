@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.LENDING_ID
+import com.codemobile.hackcatonapp.USER_ID
 import com.codemobile.hackcatonapp.USER_LIST
 import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
@@ -68,7 +69,7 @@ class LendingFragment : Fragment() {
 
     fun notificationUserGetLending() {
         //this notification all of them!!
-        LeandingRef.whereEqualTo("lender", "0").addSnapshotListener { querySnapshot, e ->
+        LeandingRef.whereEqualTo("lender", USER_ID).addSnapshotListener { querySnapshot, e ->
             if (e != null) {
                 return@addSnapshotListener
             }

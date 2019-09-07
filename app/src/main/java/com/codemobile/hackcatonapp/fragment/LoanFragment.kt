@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.LoanListActivity
 import kotlinx.android.synthetic.main.fragment_loan.*
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.activity.LoanListActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.model.LendingModel
 

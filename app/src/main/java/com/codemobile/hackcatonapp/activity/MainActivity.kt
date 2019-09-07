@@ -1,7 +1,8 @@
-package com.codemobile.hackcatonapp
+package com.codemobile.hackcatonapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.fragment.HomeFragment
 import com.codemobile.hackcatonapp.fragment.LendingFragment
 import com.codemobile.hackcatonapp.fragment.LoanFragment

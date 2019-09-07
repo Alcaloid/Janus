@@ -1,9 +1,10 @@
-package com.codemobile.hackcatonapp
+package com.codemobile.hackcatonapp.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.adapter.LoanListAdapter
 import com.codemobile.hackcatonapp.adapter.OnLoanClick
 import com.codemobile.hackcatonapp.model.Loan

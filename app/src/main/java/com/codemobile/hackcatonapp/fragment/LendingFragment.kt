@@ -19,7 +19,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_lend.*
 
-class LendingFragment : Fragment(){
+class LendingFragment : Fragment() {
 
     private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
     private val lendingArrayList: ArrayList<LendingModel> = arrayListOf()
@@ -39,18 +39,17 @@ class LendingFragment : Fragment(){
         init()
         setAccount(view)
         setLending(view)
-//        checkLendingData()
         notificationUserGetLending()
         setOnAddLending()
     }
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList,object : QueryUser {
-                override fun queryUserData(userArrayList:ArrayList<String>,id:String?) {
-                    val intent:Intent = Intent(context,ApproveActivity::class.java)
-                    intent.putExtra(USER_LIST,userArrayList)
-                    intent.putExtra(LENDING_ID,id)
+            LeandingAdapter(lendingArrayList, object : QueryUser {
+                override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
+                    val intent: Intent = Intent(context, ApproveActivity::class.java)
+                    intent.putExtra(USER_LIST, userArrayList)
+                    intent.putExtra(LENDING_ID, id)
                     startActivity(intent)
                 }
             })
@@ -67,27 +66,7 @@ class LendingFragment : Fragment(){
         }
     }
 
-    fun checkLendingData(){
-        //query data to add array first time
-        LeandingRef.whereEqualTo("lender", "0").get().addOnSuccessListener { documentSnapshot ->
-            lendingArrayList.clear()
-            documentSnapshot.forEach {
-                //change Query data to LeandingModel
-                val result = it.toObject(LendingModel::class.java)
-                lendingArrayList.add(result)
-            }
-            if (lendingArrayList.isNotEmpty()){
-                image_notLeanding.visibility = View.GONE
-                txt_notLeanding.visibility = View.GONE
-            }else{
-                image_notLeanding.visibility = View.VISIBLE
-                txt_notLeanding.visibility = View.VISIBLE
-            }
-            leandingAdapter?.notifyDataSetChanged()
-        }
-    }
-
-    fun notificationUserGetLending(){
+    fun notificationUserGetLending() {
         //this notification all of them!!
         LeandingRef.whereEqualTo("lender", "0").addSnapshotListener { querySnapshot, e ->
             if (e != null) {
@@ -99,7 +78,18 @@ class LendingFragment : Fragment(){
                 lendingArrayList.add(result)
                 lendingArrayList[lendingArrayList.lastIndex].id = it.id
             }
+            showImageArrayEmpty()
             leandingAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    fun showImageArrayEmpty() {
+        if (lendingArrayList.isNotEmpty()) {
+            image_notLeanding.visibility = View.GONE
+            txt_notLeanding.visibility = View.GONE
+        } else {
+            image_notLeanding.visibility = View.VISIBLE
+            txt_notLeanding.visibility = View.VISIBLE
         }
     }
 

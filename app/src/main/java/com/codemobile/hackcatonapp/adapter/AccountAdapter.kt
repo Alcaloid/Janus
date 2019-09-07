@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
 import kotlinx.android.synthetic.main.custom_card_account.view.*
 
-class AccountAdapter(val dataArrayList:ArrayList<String>) :RecyclerView.Adapter<AccountHolder>(){
+class AccountAdapter(val dataArrayList: ArrayList<String>) : RecyclerView.Adapter<AccountHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountHolder {
         return AccountHolder(
             LayoutInflater.from(parent.context).inflate(
@@ -24,13 +24,13 @@ class AccountAdapter(val dataArrayList:ArrayList<String>) :RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: AccountHolder, position: Int) {
         holder.account.text = "xxx-xxx000-1"
-        holder.money.text   = dataArrayList[position]
+        holder.money.text = dataArrayList[position]
     }
 
 }
 
-class AccountHolder(view:View):RecyclerView.ViewHolder(view) {
+class AccountHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val account = view.txt_num_account
-    val money   = view.txt_money
+    val money = view.txt_money
 }

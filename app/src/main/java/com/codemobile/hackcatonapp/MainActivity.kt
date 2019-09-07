@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         return@OnNavigationItemSelectedListener when (item.itemId) {
-            R.id.menu_home, R.id.menu_loan,R.id.menu_lean -> {
+            R.id.menu_home, R.id.menu_loan, R.id.menu_lean -> {
                 changeFragment(item.itemId)
                 true
             }

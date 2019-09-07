@@ -10,10 +10,11 @@ import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 
-class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: QueryUser) : RecyclerView.Adapter<LeandingHolder>(){
+class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser: QueryUser) :
+    RecyclerView.Adapter<LeandingHolder>() {
 
-    var txt_color:Int = Color.RED
-    var statusText:String = "Waiting"
+    var txt_color: Int = Color.RED
+    var statusText: String = "Waiting"
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeandingHolder {
         return LeandingHolder(
@@ -37,27 +38,27 @@ class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: Q
         holder.status.setTextColor(txt_color)
         holder.status.text = statusText
         holder.itemView.setOnClickListener {
-            if (dataArrayList[position].userGet.isNotEmpty()&&!dataArrayList[position].status){
-                queryUser.queryUserData(dataArrayList[position].userGet,dataArrayList[position].id)
+            if (dataArrayList[position].userGet.isNotEmpty() && !dataArrayList[position].status) {
+                queryUser.queryUserData(dataArrayList[position].userGet, dataArrayList[position].id)
             }
         }
     }
 
-    fun setStatusText(position: Int){
-        if (dataArrayList[position].status){
+    fun setStatusText(position: Int) {
+        if (dataArrayList[position].status) {
             statusText = "Lending"
             txt_color = Color.GREEN
-        }else if(dataArrayList[position].userGet.isNotEmpty()){
+        } else if (dataArrayList[position].userGet.isNotEmpty()) {
             statusText = "Need Approve"
             txt_color = Color.YELLOW
-        }else{
+        } else {
             statusText = "Waiting"
             txt_color = Color.RED
         }
     }
 }
 
-class LeandingHolder(view: View): RecyclerView.ViewHolder(view) {
+class LeandingHolder(view: View) : RecyclerView.ViewHolder(view) {
     val limit = view.txt_limit
     val interest = view.txt_interest
     val period = view.txt_period

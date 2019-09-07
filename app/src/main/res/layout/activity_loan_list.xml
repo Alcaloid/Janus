@@ -6,11 +6,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".LoanListActivity">
+
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorPurple"
             >
+
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,6 +46,7 @@
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
             android:id="@+id/amountSearchView"
             android:layout_width="match_parent"

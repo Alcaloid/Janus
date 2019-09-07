@@ -9,7 +9,8 @@ import com.codemobile.hackcatonapp.interfaces.UpdateApprove
 import com.codemobile.hackcatonapp.model.UserModel
 import kotlinx.android.synthetic.main.card_need_approve.view.*
 
-class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>,val updateApprove: UpdateApprove) : RecyclerView.Adapter<UserInformationHolder>() {
+class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>, val updateApprove: UpdateApprove) :
+    RecyclerView.Adapter<UserInformationHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserInformationHolder {
         return UserInformationHolder(

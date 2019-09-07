@@ -5,6 +5,7 @@
               android:gravity="center"
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
+
     <androidx.cardview.widget.CardView
             android:layout_width="300dp"
             android:layout_height="125dp"
@@ -18,12 +19,14 @@
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 >
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Status:"
                     android:layout_toLeftOf="@+id/txt_status"
                     />
+
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,6 +44,7 @@
                     android:layout_below="@+id/txt_status"
                     android:layout_above="@+id/txt_detail"
                     >
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -48,12 +52,14 @@
                         android:text="Limit: xxxx฿"
                         android:textColor="@color/colorBlack"
                         />
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/txt_interest"
                         android:text="interest: x%"
                         />
+
                 <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -61,6 +67,7 @@
                         android:text="Period: x year"
                         />
             </LinearLayout>
+
             <TextView
                     android:id="@+id/txt_detail"
                     android:text="detail>"

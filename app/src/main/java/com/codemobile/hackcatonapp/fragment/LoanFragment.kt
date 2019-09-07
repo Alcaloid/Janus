@@ -13,13 +13,14 @@ import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.model.LendingModel
 
-class LoanFragment:Fragment() {
+class LoanFragment : Fragment() {
 
-    private val moneyAccountArray:ArrayList<String> = arrayListOf("100000","2000","10000")
-    private val loaningArrayList:ArrayList<LendingModel> = arrayListOf()
+    private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
+    private val loaningArrayList: ArrayList<LendingModel> = arrayListOf()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_loan, container, false)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAccount(view)
@@ -33,10 +34,10 @@ class LoanFragment:Fragment() {
     }
 
     private fun setOnAddLending() {
-        if (loaningArrayList.isEmpty()){
+        if (loaningArrayList.isEmpty()) {
             image_notLoanding.visibility = View.VISIBLE
             txt_notLoan.visibility = View.VISIBLE
-        }else{
+        } else {
             image_notLoanding.visibility = View.GONE
             txt_notLoan.visibility = View.GONE
         }
@@ -46,12 +47,12 @@ class LoanFragment:Fragment() {
         }
     }
 
-    private fun setAccount(_view: View){
+    private fun setAccount(_view: View) {
         val accountAdapter: AccountAdapter =
             AccountAdapter(moneyAccountArray)
         rcv_loan_account.let {
             it.adapter = accountAdapter
-            it.layoutManager = LinearLayoutManager(_view.context,LinearLayoutManager.HORIZONTAL,false)
+            it.layoutManager = LinearLayoutManager(_view.context, LinearLayoutManager.HORIZONTAL, false)
         }
     }
 }

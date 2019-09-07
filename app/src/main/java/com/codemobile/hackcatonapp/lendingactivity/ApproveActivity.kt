@@ -2,8 +2,6 @@ package com.codemobile.hackcatonapp.lendingactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.SyncStateContract.Helpers.update
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.LENDING_ID
 import com.codemobile.hackcatonapp.R
@@ -47,9 +45,9 @@ class ApproveActivity : AppCompatActivity() {
 
     fun init() {
         val lending_ID: String = intent.getStringExtra(LENDING_ID) as String
-        needApproveAdapter = NeedApproveAdapter(userInformation,object : UpdateApprove{
-            override fun updateLending(idUser:String) {
-                updateLending(idUser,lending_ID)
+        needApproveAdapter = NeedApproveAdapter(userInformation, object : UpdateApprove {
+            override fun updateLending(idUser: String) {
+                updateLending(idUser, lending_ID)
             }
 
         })
@@ -59,9 +57,9 @@ class ApproveActivity : AppCompatActivity() {
         }
     }
 
-    fun updateLending(userID:String,lenderID:String){
-        LeandingRef.document(lenderID).update("status" ,true)
-        LeandingRef.document(lenderID).update("userGet" , arrayListOf(userID))
+    fun updateLending(userID: String, lenderID: String) {
+        LeandingRef.document(lenderID).update("status", true)
+        LeandingRef.document(lenderID).update("userGet", arrayListOf(userID))
         finish()
     }
 

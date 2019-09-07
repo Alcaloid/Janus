@@ -3,20 +3,24 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/colorPurple"
             >
+
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 >
+
             <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/scb_logo"
                     />
+
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -27,6 +31,7 @@
                     />
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,6 +39,7 @@
             android:background="#EDE7F6"
             android:layout_weight="0.55"
             >
+
         <TextView
                 android:id="@+id/txt_loan_header"
                 android:layout_width="match_parent"
@@ -50,6 +56,7 @@
                 >
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
     <TextView
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
@@ -57,6 +64,7 @@
             android:text="My Loaning"
             android:layout_marginLeft="10dp"
             />
+
     <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -65,17 +73,20 @@
             android:layout_marginTop="2dp"
             android:layout_marginRight="50dp"
             />
+
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0.45"
             >
+
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_myLoaning"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
         </androidx.recyclerview.widget.RecyclerView>
+
         <ImageView
                 android:id="@+id/image_notLoanding"
                 android:layout_centerVertical="true"
@@ -97,6 +108,7 @@
                 android:textColor="#C9C9C9"
                 android:id="@+id/txt_notLoan"/>
     </RelativeLayout>
+
     <Button
             android:id="@+id/btn_toLoadlist"
             android:layout_width="match_parent"

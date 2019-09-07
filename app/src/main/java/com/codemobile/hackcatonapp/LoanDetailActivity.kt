@@ -22,7 +22,7 @@ class LoanDetailActivity : AppCompatActivity() {
         lonerName.text = loan.loner
 
         submitLoanBtn.setOnClickListener {
-            Log.d("test","submitLoanBtn click")
+            Log.d("test", "submitLoanBtn click")
         }
 
 

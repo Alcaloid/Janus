@@ -10,7 +10,7 @@
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorPurple"
+            android:background="@color/colorApp"
             >
 
         <LinearLayout
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textColor="#6012BC"
+                    android:textColor="@color/colorApp"
                     android:text="SEARCH"/>
         </LinearLayout>
 

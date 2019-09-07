@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/cv_account"
+              android:layout_margin="10dp"
               android:orientation="vertical"
               android:layout_height="wrap_content"
               android:layout_width="wrap_content"
@@ -9,18 +10,16 @@
         >
 
     <androidx.cardview.widget.CardView
-            android:layout_width="300dp"
-            android:layout_height="125dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            app:cardCornerRadius="10dp">
-
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="7dp">
         <LinearLayout
+                android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                >
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <TextView
                     android:id="@+id/txt_num_account"
@@ -28,13 +27,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
                     android:text="xxxx-xxxx-xx"
                     android:textColor="@color/colorBlack"
                     />
 
             <TextView
+                    android:layout_marginTop="10dp"
                     android:id="@+id/txt_money"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -12,9 +12,7 @@
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/navigation"
-            >
-
+            android:layout_above="@+id/navigation">
     </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:layout_alignParentBottom="true"
-            android:background="#E6E4E4"
+            android:background="#F0F0F0"
             app:itemIconTint="@color/btn_color_selection"
             app:menu="@menu/menu_main"
             app:labelVisibilityMode="unlabeled"

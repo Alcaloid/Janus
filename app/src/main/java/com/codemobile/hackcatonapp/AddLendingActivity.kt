@@ -1,11 +1,7 @@
 package com.codemobile.hackcatonapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.codemobile.hackcatonapp.model.LeandingModel
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,12 +34,12 @@ class AddLendingActivity : AppCompatActivity() {
     fun addMyLeanderToDatabase() {
         val id = LeandingRef.document().getId()
         hashMap = hashMapOf(
-            "Lender" to USER_ID,
-            "Limit"  to 1000,
-            "Interest" to 3,
-            "Period" to "10 Year",
-            "Status" to false,
-            "UserGet" to arrayListOf(null)
+            "lender" to "0",
+            "limit"  to 1000,
+            "interest" to 3,
+            "period" to "10 Year",
+            "status" to "Waiting",
+            "userGet" to arrayListOf(null)
         )
         LeandingRef.document(id).set(hashMap)
         updateMyLeanderInUser(id)

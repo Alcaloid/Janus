@@ -1,9 +1,9 @@
 package com.codemobile.hackcatonapp.model
 
-data class LeandingModel(
-    val limit:Int,
-    val interrest:Int,
-    val peroid:String,
-    var status:String,
-    val userGet:ArrayList<Int>
+data class LendingModel(
+    val limit:Int? = null,
+    val interest:Int? = null,
+    val period:String? = null,
+    var status:String? = null,
+    val userGet:ArrayList<Int> = arrayListOf()
 )

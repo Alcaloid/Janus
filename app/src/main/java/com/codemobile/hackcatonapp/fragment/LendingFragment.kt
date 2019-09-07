@@ -5,23 +5,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
-import com.codemobile.hackcatonapp.model.LeandingModel
+import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_lend.*
 
 
-
 class LendingFragment : Fragment() {
 
     private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
-    private val lendingArrayList: ArrayList<LeandingModel> = arrayListOf()
+    private val lendingArrayList: ArrayList<LendingModel> = arrayListOf()
     private var leandingAdapter: LeandingAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
@@ -66,16 +64,15 @@ class LendingFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
-            LeandingRef.whereEqualTo("Lender", "0").get()
-                .addOnSuccessListener { documentSnapshot ->
-                    documentSnapshot.forEach {
-                        println(it.data)
-                    }
-                    leandingAdapter?.notifyDataSetChanged()
+            //query data to add array
+            LeandingRef.whereEqualTo("lender", "0").get().addOnSuccessListener { documentSnapshot ->
+                documentSnapshot.forEach {
+                    //change Query data to LeandingModel
+                    val result = it.toObject(LendingModel::class.java)
+                    lendingArrayList.add(result)
                 }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(context, "Read Failed", Toast.LENGTH_SHORT).show()
-                }
+                leandingAdapter?.notifyDataSetChanged()
+            }
         }
     }
 

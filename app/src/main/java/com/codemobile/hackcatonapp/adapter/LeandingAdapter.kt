@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.model.LeandingModel
+import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 
-class LeandingAdapter(val dataArrayList:ArrayList<LeandingModel>) : RecyclerView.Adapter<LeandingHolder>(){
+class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>) : RecyclerView.Adapter<LeandingHolder>(){
 
     var txt_color:Int = Color.RED
     var isPeopleGet = false
@@ -30,8 +30,8 @@ class LeandingAdapter(val dataArrayList:ArrayList<LeandingModel>) : RecyclerView
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
         holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
-        holder.interest.text = "Interest: ${dataArrayList[position].interrest}%"
-        holder.period.text = "Period: ${dataArrayList[position].peroid}"
+        holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
+        holder.period.text = "Period: ${dataArrayList[position].period}"
         holder.status.text = dataArrayList[position].status
         holder.status.setTextColor(txt_color)
 

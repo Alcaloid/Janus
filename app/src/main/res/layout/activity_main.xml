@@ -24,7 +24,6 @@
             android:background="#F0F0F0"
             app:itemIconTint="@color/btn_color_selection"
             app:menu="@menu/menu_main"
-            app:labelVisibilityMode="unlabeled"
             />
 
 </RelativeLayout>

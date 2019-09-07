@@ -6,7 +6,8 @@
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorApp">
+            android:background="@color/colorPurple"
+            >
 
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -34,7 +35,8 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#EDE7F6"
-            android:layout_weight="0.55">
+            android:layout_weight="0.60"
+            >
 
         <TextView
                 android:id="@+id/txt_loan_header"
@@ -73,7 +75,7 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.45"
+            android:layout_weight="0.40"
             >
 
         <androidx.recyclerview.widget.RecyclerView
@@ -113,5 +115,7 @@
             android:text="Loan"
             android:background="@drawable/corner_button"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            />
+
 </LinearLayout>

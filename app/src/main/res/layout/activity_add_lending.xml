@@ -2,16 +2,133 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".lendingactivity.AddLendingActivity"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="15dp">
 
-
-    <Button
-            android:text="Add"
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_add_card_lending"/>
+            android:text="Create new lending"/>
+
+    <LinearLayout
+            android:padding="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Amount :"/>
+
+            <EditText
+                    android:id="@+id/amountEditText"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Interest :"/>
+
+            <EditText
+                    android:id="@+id/interestEditText"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Period : "/>
+
+            <EditText
+                    android:id="@+id/periodEditText"
+                    android:background="@drawable/rounded_border_edittext"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <TextView
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="Detail :"/>
+
+        <EditText
+                android:id="@+id/detailEditText"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border_edittext"
+                android:layout_width="match_parent"
+                android:gravity="top"
+                android:layout_height="150dp"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+            <CheckBox
+                    android:id="@+id/acceptTermsCheck"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#C4C4C4"
+                    tools:checked="true"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/acceptance_terms"/>
+
+            <TextView
+                    android:id="@+id/termsAndCondition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/acceptance_terms_link"
+                    android:textStyle="bold"/>
+
+        </LinearLayout>
+
+
+        <Button
+                android:id="@+id/btn_add_card_lending"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Submit"
+                android:textColor="#6012BC"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/corner_button"
+                />
+
+    </LinearLayout>
+
+
 </LinearLayout>

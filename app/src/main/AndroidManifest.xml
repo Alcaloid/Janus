@@ -13,11 +13,11 @@
         </activity>
         <activity android:name=".lendingactivity.AddLendingActivity">
         </activity>
-        <activity android:name=".LoanDetailActivity">
+        <activity android:name=".activity.LoanDetailActivity">
         </activity>
-        <activity android:name=".LoanListActivity">
+        <activity android:name=".activity.LoanListActivity">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

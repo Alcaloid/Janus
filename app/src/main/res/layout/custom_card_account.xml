@@ -2,23 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:id="@+id/cv_account"
-              android:layout_margin="10dp"
               android:orientation="vertical"
               android:layout_height="wrap_content"
               android:layout_width="wrap_content"
+              android:padding="10dp"
               android:gravity="center"
         >
 
     <androidx.cardview.widget.CardView
-            android:layout_marginLeft="70dp"
-            android:layout_marginRight="70dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="7dp">
+            android:layout_width="150dp"
+            android:layout_height="75dp"
+            app:cardCornerRadius="10dp"
+            >
         <LinearLayout
                 android:padding="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
             <TextView
@@ -38,8 +37,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="money"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
                     android:gravity="center_vertical"
                     android:textColor="@color/colorBlack"
                     />

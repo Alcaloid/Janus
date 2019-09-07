@@ -35,10 +35,10 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="#EDE7F6"
-            android:layout_weight="1"
+            android:layout_weight="0.60"
             >
 
         <TextView
@@ -54,7 +54,7 @@
                 android:id="@+id/rcv_account"
                 tools:listitem="@layout/custom_card_account"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 >
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
@@ -79,7 +79,7 @@
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.40"
             >
 
         <androidx.recyclerview.widget.RecyclerView

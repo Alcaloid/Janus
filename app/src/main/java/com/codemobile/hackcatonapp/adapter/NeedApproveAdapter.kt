@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.interfaces.UpdateApprove
 import com.codemobile.hackcatonapp.model.UserModel
 import kotlinx.android.synthetic.main.card_need_approve.view.*
 
-class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>) : RecyclerView.Adapter<UserInformationHolder>() {
+class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>,val updateApprove: UpdateApprove) : RecyclerView.Adapter<UserInformationHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserInformationHolder {
         return UserInformationHolder(
@@ -30,7 +31,7 @@ class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>) : RecyclerView
         holder.job.text = "Job Title: ${dataArrayList[position].Job}"
         holder.company.text = "Company name:${dataArrayList[position].Company}"
         holder.approve.setOnClickListener {
-
+            updateApprove.updateLending(dataArrayList[position].id as String)
         }
     }
 

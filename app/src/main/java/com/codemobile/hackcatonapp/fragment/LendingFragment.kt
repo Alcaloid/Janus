@@ -83,9 +83,6 @@ class LendingFragment : Fragment(){
                 image_notLeanding.visibility = View.VISIBLE
                 txt_notLeanding.visibility = View.VISIBLE
             }
-            lendingArrayList.forEach {
-                println("Query:"+it)
-            }
             leandingAdapter?.notifyDataSetChanged()
         }
     }

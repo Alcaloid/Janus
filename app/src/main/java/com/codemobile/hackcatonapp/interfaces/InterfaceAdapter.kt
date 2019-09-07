@@ -4,5 +4,5 @@ interface QueryUser{
     fun queryUserData(userArrayList:ArrayList<String>,id:String?)
 }
 interface UpdateApprove{
-    fun updateLending()
+    fun updateLending(idUser:String)
 }

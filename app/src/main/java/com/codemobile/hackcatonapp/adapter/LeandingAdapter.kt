@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.fragment.QueryUser
+import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 
@@ -38,7 +38,7 @@ class LeandingAdapter(val dataArrayList:ArrayList<LendingModel>,val queryUser: Q
         holder.status.text = statusText
         holder.itemView.setOnClickListener {
             if (dataArrayList[position].userGet.isNotEmpty()&&!dataArrayList[position].status){
-                queryUser.queryUserData(dataArrayList[position].userGet)
+                queryUser.queryUserData(dataArrayList[position].userGet,dataArrayList[position].id)
             }
         }
     }

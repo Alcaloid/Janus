@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codemobile.hackcatonapp.LENDING_ID
 import com.codemobile.hackcatonapp.USER_LIST
 import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
+import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.lendingactivity.ApproveActivity
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_lend.*
-
-interface QueryUser{
-    fun queryUserData(userArrayList:ArrayList<String>)
-}
 
 class LendingFragment : Fragment(){
 
@@ -48,10 +46,11 @@ class LendingFragment : Fragment(){
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList,object :QueryUser{
-                override fun queryUserData(userArrayList:ArrayList<String>) {
+            LeandingAdapter(lendingArrayList,object : QueryUser {
+                override fun queryUserData(userArrayList:ArrayList<String>,id:String?) {
                     val intent:Intent = Intent(context,ApproveActivity::class.java)
                     intent.putExtra(USER_LIST,userArrayList)
+                    intent.putExtra(LENDING_ID,id)
                     startActivity(intent)
                 }
             })
@@ -100,11 +99,8 @@ class LendingFragment : Fragment(){
             lendingArrayList.clear()
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
-//                println("result:"+result)
                 lendingArrayList.add(result)
-            }
-            lendingArrayList.forEach {
-                println("Data:"+it)
+                lendingArrayList[lendingArrayList.lastIndex].id = it.id
             }
             leandingAdapter?.notifyDataSetChanged()
         }

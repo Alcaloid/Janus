@@ -22,7 +22,7 @@ class AddLendingActivity : AppCompatActivity() {
 
         init()
         btn_add_card_lending.setOnClickListener {
-            addMyLeanderToDatabase()
+//            addMyLeanderToDatabase()
             finish()
         }
     }

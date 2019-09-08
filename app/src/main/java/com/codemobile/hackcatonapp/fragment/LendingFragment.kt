@@ -44,7 +44,7 @@ class LendingFragment : Fragment() {
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList, object : QueryUser {
+            LeandingAdapter(lendingArrayList,0, object : QueryUser {
                 override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                     val intent: Intent = Intent(context, ApproveActivity::class.java)
                     intent.putExtra(USER_LIST, userArrayList)

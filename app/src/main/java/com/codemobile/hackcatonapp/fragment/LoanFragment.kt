@@ -14,6 +14,7 @@ import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
+import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -44,7 +45,14 @@ class LoanFragment : Fragment() {
     }
 
     private fun setLoan(_view: View) {
+        loaningAdapter = LeandingAdapter(loaningArrayList,1,object : QueryUser {
+            override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
+                //set on click
+            }
+        })
         rcv_myLoaning.let {
+            it.adapter = loaningAdapter
+            it.layoutManager = LinearLayoutManager(context)
         }
     }
 
@@ -72,17 +80,11 @@ class LoanFragment : Fragment() {
                 return@addSnapshotListener
             }
             querySnapshot?.forEach {
-                println(it)
+                val result = it.toObject(LendingModel::class.java)
+                loaningArrayList.add(result)
             }
             checkUserLoan()
-//            lendingArrayList.clear()
-//            querySnapshot?.forEach {
-//                val result = it.toObject(LendingModel::class.java)
-//                lendingArrayList.add(result)
-//                lendingArrayList[lendingArrayList.lastIndex].id = it.id
-//            }
-//            showImageArrayEmpty()
-//            leandingAdapter?.notifyDataSetChanged()
+            loaningAdapter?.notifyDataSetChanged()
         }
     }
 

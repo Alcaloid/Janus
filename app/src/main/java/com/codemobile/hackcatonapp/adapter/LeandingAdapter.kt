@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
-import io.grpc.internal.SharedResourceHolder
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 import java.text.DecimalFormat
 

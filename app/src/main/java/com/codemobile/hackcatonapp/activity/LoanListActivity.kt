@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codemobile.hackcatonapp.LENDER_DATABASE
+import com.codemobile.hackcatonapp.USER_DATABASE
+import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.adapter.LoanListAdapter
 import com.codemobile.hackcatonapp.adapter.OnLoanClick
 import com.codemobile.hackcatonapp.model.LendingModel
@@ -44,8 +47,8 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
 
     private fun initDatabase() {
         database = FirebaseFirestore.getInstance()
-        LeandingRef = database.collection("Leanding")
-        UserRef = database.collection("User")
+        LeandingRef = database.collection(LENDER_DATABASE)
+        UserRef = database.collection(USER_DATABASE)
     }
 
     private fun queryLenderList() {
@@ -54,8 +57,10 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val lendingData = document.toObject(LendingModel::class.java)
-                    lenderArray.add(lendingData)
-                    lenderArray[lenderArray.lastIndex].lenderName = document.get("lender").toString()
+                    if(lendingData.id != USER_ID_LOANER){
+                        lenderArray.add(lendingData)
+                        lenderArray[lenderArray.lastIndex].lenderName = document.get("lender").toString()
+                    }
                 }
                 queryLenderName()
             }

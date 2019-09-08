@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.LENDER_DATABASE
 import kotlinx.android.synthetic.main.fragment_loan.*
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.USER_DATABASE
 import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
@@ -29,6 +31,7 @@ class LoanFragment : Fragment() {
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
+    lateinit var UserRef: CollectionReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_loan, container, false)
@@ -75,6 +78,7 @@ class LoanFragment : Fragment() {
 
     fun notificationLoanOfUser() {
         //this notification all of them!!
+        loaningArrayList.clear()
         LeandingRef.whereArrayContains("userGet", USER_ID_LOANER).addSnapshotListener { querySnapshot, e ->
             if (e != null) {
                 return@addSnapshotListener
@@ -82,7 +86,9 @@ class LoanFragment : Fragment() {
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
                 loaningArrayList.add(result)
+                loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lender").toString()
             }
+            queryLenderName()
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
         }
@@ -91,6 +97,25 @@ class LoanFragment : Fragment() {
     fun init() {
         database = FirebaseFirestore.getInstance()
         LeandingRef = database.collection(LENDER_DATABASE)
+        UserRef = database.collection(USER_DATABASE)
+    }
+
+    private fun queryLenderName() {
+        for (i in 0 until loaningArrayList.size-1) {
+            getLenderName(loaningArrayList[i].lenderName.toString(),i)
+        }
+    }
+
+    private fun getLenderName(id: String,index:Int){
+        UserRef.document(id).get()
+            .addOnSuccessListener { result ->
+                val lenderName = result.get("Name")
+                loaningArrayList[index].lenderName = lenderName.toString()
+                loaningAdapter?.notifyDataSetChanged()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(context, "Fail to read data", Toast.LENGTH_SHORT).show()
+            }
     }
 
     private fun setAccount(_view: View) {

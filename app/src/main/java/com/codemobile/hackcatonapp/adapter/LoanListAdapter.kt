@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.model.Loan
+import com.codemobile.hackcatonapp.model.LendingModel
 import java.text.DecimalFormat
 
 
 class LoanListAdapter(private val listener: OnLoanClick) : RecyclerView.Adapter<LoanListHolder>() {
 
-    val loanArray: ArrayList<Loan>
+    val loanArray: ArrayList<LendingModel>
         get() = _loanArray
 
-    private var _loanArray: ArrayList<Loan> = arrayListOf()
+    private var _loanArray: ArrayList<LendingModel> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = LoanListHolder(parent)
 
@@ -30,13 +30,13 @@ class LoanListAdapter(private val listener: OnLoanClick) : RecyclerView.Adapter<
         holder.limitLoan.text = "Limit:  ${limit}฿"
         holder.interestLoan.text = "Interest:  ${item.interest}%"
         holder.periodLoan.text = "Period:  ${item.period} month"
-        holder.lonerName.text = item.loner
+        holder.lonerName.text = item.lenderName
         holder.itemView.setOnClickListener {
             listener.onLoanClick(item)
         }
     }
 
-    fun submitList(list: ArrayList<Loan>) {
+    fun submitList(list: ArrayList<LendingModel>) {
         _loanArray = list
         notifyDataSetChanged()
     }
@@ -53,5 +53,5 @@ class LoanListHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 }
 
 interface OnLoanClick {
-    fun onLoanClick(loan: Loan)
+    fun onLoanClick(loan: LendingModel)
 }

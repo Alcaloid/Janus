@@ -10,8 +10,9 @@ import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import io.grpc.internal.SharedResourceHolder
 import kotlinx.android.synthetic.main.card_my_lending.view.*
+import java.text.DecimalFormat
 
-class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser: QueryUser) :
+class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>,val role:Int, val queryUser: QueryUser) :
     RecyclerView.Adapter<LeandingHolder>() {
 
     var txt_color: Int = Color.RED
@@ -32,11 +33,21 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
     }
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
-        setStatusText(position)
-        holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
-        holder.name.visibility = View.GONE
+        val formatter = DecimalFormat("#,###,###.##")
+        val limit = formatter.format(dataArrayList[position].limit)
+        holder.limit.text = "Limit: ${limit}฿"
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"
+        if (role == 0){
+            setCardLender(holder,position)
+        }else{
+            setCardLoaning(holder,position)
+        }
+    }
+
+    fun setCardLender(holder: LeandingHolder, position: Int){
+        setStatusText(position)
+        holder.name.visibility = View.GONE
         holder.status.setTextColor(txt_color)
         holder.status.text = statusText
         holder.itemView.setOnClickListener {
@@ -44,6 +55,13 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
                 queryUser.queryUserData(dataArrayList[position].userGet, dataArrayList[position].id)
             }
         }
+    }
+
+    fun setCardLoaning(holder: LeandingHolder, position: Int){
+        holder.detail.visibility = View.GONE
+        holder.status.setTextColor(txt_color)
+        holder.status.text = statusText
+        holder.name.text = dataArrayList[position].lenderName
     }
 
     fun setStatusText(position: Int) {
@@ -66,4 +84,5 @@ class LeandingHolder(view: View) : RecyclerView.ViewHolder(view) {
     val interest = view.txt_interest
     val period = view.txt_period
     val status = view.txt_status
+    val detail = view.txt_detail
 }

@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.LENDING_ID
-import com.codemobile.hackcatonapp.USER_ID_LENDER
-import com.codemobile.hackcatonapp.USER_LIST
+import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
@@ -45,7 +43,7 @@ class LendingFragment : Fragment() {
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList, object : QueryUser {
+            LeandingAdapter(lendingArrayList,0, object : QueryUser {
                 override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                     val intent: Intent = Intent(context, ApproveActivity::class.java)
                     intent.putExtra(USER_LIST, userArrayList)
@@ -59,10 +57,23 @@ class LendingFragment : Fragment() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1){
+            if (resultCode == 1){
+                val balaceMoney = data?.getStringExtra("result")
+                moneyAccountArray[0] = balaceMoney.toString()
+                accountAdapter?.notifyDataSetChanged()
+            }
+        }
+    }
+
     private fun setOnAddLending() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
-            startActivity(Intent(context, AddLendingActivity::class.java))
+            val intent: Intent = Intent(context, AddLendingActivity::class.java)
+            intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
+            startActivityForResult(intent,1)
         }
     }
 
@@ -95,7 +106,7 @@ class LendingFragment : Fragment() {
 
     fun init() {
         database = FirebaseFirestore.getInstance()
-        LeandingRef = database.collection("Leanding")
+        LeandingRef = database.collection(LENDER_DATABASE)
     }
 
     private fun setAccount(_view: View) {

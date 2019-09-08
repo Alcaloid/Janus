@@ -3,8 +3,11 @@ package com.codemobile.hackcatonapp.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.codemobile.hackcatonapp.LENDER_DATABASE
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.model.LendingModel
 import com.codemobile.hackcatonapp.model.Loan
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_loan_detail.*
 import java.text.DecimalFormat
 
@@ -14,18 +17,23 @@ class LoanDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loan_detail)
 
-        val loan = intent.getParcelableExtra<Loan>("Loan") ?: return
+        val loan = intent.getSerializableExtra("Loan") as LendingModel
 
         val formatter = DecimalFormat("#,###,###.##")
         val limit = formatter.format(loan.limit)
         limitLoan.text = getString(R.string.loan_list_limit, limit)
         interestLoan.text = getString(R.string.laon_list_interest, loan.interest)
-        periodLoan.text = getString(R.string.loan_list_period, loan.period)
-        lonerName.text = loan.loner
+        periodLoan.text = "Period: ${loan.period} month"//getString(R.string.loan_list_period, loan.period)
+        lonerName.text = loan.lenderName
 
         submitLoanBtn.setOnClickListener {
-            Log.d("test", "submitLoanBtn click")
+            updateUserGet()
         }
 
     }
+
+    private fun updateUserGet() {
+        FirebaseFirestore.getInstance().collection(LENDER_DATABASE)
+    }
+
 }

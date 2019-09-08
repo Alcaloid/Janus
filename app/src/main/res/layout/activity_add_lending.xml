@@ -74,6 +74,7 @@
 
             <EditText
                     android:id="@+id/amountEditText"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/rounded_border_edittext"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"/>
@@ -93,6 +94,7 @@
 
             <EditText
                     android:id="@+id/interestEditText"
+                    android:inputType="numberDecimal"
                     android:background="@drawable/rounded_border_edittext"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"/>

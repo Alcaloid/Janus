@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
 import kotlinx.android.synthetic.main.custom_card_account.view.*
+import java.text.DecimalFormat
 
 class AccountAdapter(val dataArrayList: ArrayList<String>) : RecyclerView.Adapter<AccountHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AccountHolder {
@@ -23,6 +24,8 @@ class AccountAdapter(val dataArrayList: ArrayList<String>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: AccountHolder, position: Int) {
+//        val formatter = DecimalFormat("#,###,###.##")
+//        val money = formatter.format(dataArrayList[position])
         holder.account.text = "xxx-xxx000-1"
         holder.money.text = dataArrayList[position]
     }

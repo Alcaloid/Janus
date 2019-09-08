@@ -9,6 +9,7 @@ import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
+import java.text.DecimalFormat
 
 class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser: QueryUser) :
     RecyclerView.Adapter<LeandingHolder>() {
@@ -32,7 +33,9 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
 
     override fun onBindViewHolder(holder: LeandingHolder, position: Int) {
         setStatusText(position)
-        holder.limit.text = "Limit: ${dataArrayList[position].limit}฿"
+        val formatter = DecimalFormat("#,###,###.##")
+        val limit = formatter.format(dataArrayList[position].limit)
+        holder.limit.text = "Limit: ${limit}฿"
         holder.name.visibility = View.GONE
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"

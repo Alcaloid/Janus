@@ -34,7 +34,7 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
         queryLenderList()
 
         btn_image_backToLoan.setOnClickListener {
-            finish()
+            this.finish()
         }
     }
 

@@ -1,5 +1,6 @@
 package com.codemobile.hackcatonapp.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,6 +29,11 @@ class LoanDetailActivity : AppCompatActivity() {
 
         submitLoanBtn.setOnClickListener {
             updateUserGet()
+        }
+        btn_image_backToLoanList.setOnClickListener {
+            val intent = Intent(this, LoanListActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }

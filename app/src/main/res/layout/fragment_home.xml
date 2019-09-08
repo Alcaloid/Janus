@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
@@ -14,6 +15,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
             <FrameLayout
                     android:id="@+id/headlayout"
                     android:layout_width="match_parent"
@@ -30,8 +32,8 @@
                             android:layout_width="match_parent"
                             android:background="@color/colorApp"
                             android:theme="@style/AppTheme.AppBarOverlay"
-                            android:outlineAmbientShadowColor="#00000000"
-                            android:outlineSpotShadowColor="#00000000">
+                            android:outlineAmbientShadowColor="#000000"
+                            android:outlineSpotShadowColor="#000000">
 
 
                         <TextView
@@ -70,12 +72,17 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
                 <ImageView
-                        android:layout_marginTop="65dp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/profile_img"
+                        android:layout_marginTop="65dp"
+                        android:id="@+id/profileimg"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile01"
                         android:layout_width="100dp"
                         android:layout_height="100dp"/>
+
+
                 <ImageView
                         android:layout_marginTop="20dp"
                         android:src="@drawable/scb_logo"
@@ -84,94 +91,101 @@
                         android:layout_alignStart="@+id/main_container"/>
 
             </FrameLayout>
+
             <LinearLayout
                     android:layout_margin="20dp"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <LinearLayout
-                            android:layout_margin="1dp"
-                            android:padding="10dp"
-                            android:background="@drawable/corner_border"
-                            android:orientation="vertical"
+                <LinearLayout
+                        android:outlineAmbientShadowColor="@color/colorGray"
+                        android:layout_margin="1dp"
+                        android:padding="10dp"
+                        android:background="@drawable/rounded_border_edittext"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                            android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                        <RelativeLayout
-                                android:orientation="horizontal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                        <ImageView
+                                android:layout_marginTop="6dp"
+                                android:layout_marginRight="10dp"
+                                android:id="@+id/passbook"
+                                android:layout_gravity="bottom"
+                                android:src="@drawable/passbook"
+                                android:layout_width="20dp"
+                                android:layout_height="15dp"/>
 
-                            <ImageView
-                                    android:layout_marginTop="6dp"
-                                    android:layout_marginRight="10dp"
-                                    android:id="@+id/passbook"
-                                    android:layout_gravity="bottom"
-                                    android:src="@drawable/passbook"
-                                    android:layout_width="20dp"
-                                    android:layout_height="15dp"/>
-
-                            <TextView
-                                    android:textSize="18sp"
-                                    android:layout_toRightOf="@id/passbook"
-                                    android:id="@+id/saving"
-                                    android:text="Saving"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-
-                            <TextView
-                                    android:layout_marginTop="4dp"
-                                    android:layout_toRightOf="@id/passbook"
-                                    android:id="@+id/accountNumber"
-                                    android:text="xxx-xxx555-5"
-                                    android:layout_below="@+id/saving"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                        </RelativeLayout>
                         <TextView
-                                android:layout_gravity="right"
-                                android:id="@+id/balancetxt"
-                                android:textSize="20sp"
-                                android:text="10,000"
-                                android:layout_below="@+id/balance"
+                                android:textSize="18sp"
+                                android:layout_toRightOf="@id/passbook"
+                                android:id="@+id/saving"
+                                android:text="Saving"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
-                        <LinearLayout
-                                android:layout_marginTop="15dp"
-                                android:background="#B4B4B4"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"/>
 
                         <TextView
+                                android:layout_marginTop="4dp"
+                                android:layout_toRightOf="@id/passbook"
+                                android:id="@+id/accountNumber"
+                                android:text="xxx-xxx555-5"
+                                android:layout_below="@+id/saving"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+
+                    <TextView
+                            android:layout_gravity="right"
+                            android:id="@+id/balancetxt"
+                            android:textSize="20sp"
+                            android:text="10,000"
+                            android:layout_below="@+id/balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <LinearLayout
+                            android:layout_marginTop="15dp"
+                            android:background="#B4B4B4"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"/>
+
+                    <TextView
+                            android:layout_marginTop="5dp"
+                            android:layout_gravity="left"
+                            android:textSize="11sp"
+                            android:text="Lastest transections"
+                            android:layout_below="@+id/balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        <TextView
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/date"
                                 android:layout_marginTop="5dp"
-                                android:layout_gravity="left"
                                 android:textSize="11sp"
-                                android:text="Lastest transections"
-                                android:layout_below="@+id/balance"
+                                android:text="22 Aug"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
-                        <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            <TextView
-                                    android:layout_marginLeft="10dp"
-                                    android:id="@+id/date"
-                                    android:layout_marginTop="5dp"
-                                    android:textSize="11sp"
-                                    android:text="22 Aug"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                            <TextView
-                                    android:id="@+id/lasttransection"
-                                    android:layout_marginTop="5dp"
-                                    android:layout_alignParentRight="true"
-                                    android:textSize="11sp"
-                                    android:text="Loaning out: 1,000"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"/>
-                        </RelativeLayout>
-                    </LinearLayout>
+
+                        <TextView
+                                android:id="@+id/lasttransection"
+                                android:layout_marginTop="5dp"
+                                android:layout_alignParentRight="true"
+                                android:textSize="11sp"
+                                android:text="Loaning out: 1,000"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <Button
                         android:layout_marginTop="250dp"

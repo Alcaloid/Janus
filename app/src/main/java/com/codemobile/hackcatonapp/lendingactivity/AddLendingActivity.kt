@@ -25,6 +25,9 @@ class AddLendingActivity : AppCompatActivity() {
 //            addMyLeanderToDatabase()
             finish()
         }
+        btn_image_backToLending.setOnClickListener {
+            finish()
+        }
     }
 
     fun init() {

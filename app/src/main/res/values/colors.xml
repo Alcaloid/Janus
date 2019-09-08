@@ -3,8 +3,13 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="colorBlack">#000000</color>
+    <color name="colorBlack">#3A3939</color>
     <color name="colorPurple">#6012BC</color>
     <color name="colorApp">#4F2A81</color>
     <color name="colorTxt">#FFFFFF</color>
+    <color name="colorGray">#B4B4B4</color>
+    <color name="colorNoL">#E7E6E6</color>
+    <color name="colorWating">#AC1313</color>
+    <color name="colorNeedAppv">#F06F00</color>
+    <color name="colorAppv">#36AC13</color>
 </resources>

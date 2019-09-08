@@ -28,8 +28,8 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
         setContentView(R.layout.activity_loan_list)
 
         loanListAdaptor = LoanListAdapter(this)
-        rvLoanListView.adapter = loanListAdaptor
-        rvLoanListView.layoutManager = LinearLayoutManager(this)
+        rvLoanListView?.adapter = loanListAdaptor
+        rvLoanListView?.layoutManager = LinearLayoutManager(this)
 
         btn_image_backToLoan.setOnClickListener {
             finish()

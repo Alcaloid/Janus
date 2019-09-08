@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
+import io.grpc.internal.SharedResourceHolder
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 
 class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser: QueryUser) :
@@ -48,13 +49,13 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val queryUser:
     fun setStatusText(position: Int) {
         if (dataArrayList[position].status) {
             statusText = "Lending"
-            txt_color = Color.GREEN
+            txt_color = Color.rgb(54,172,19)
         } else if (dataArrayList[position].userGet.isNotEmpty()) {
             statusText = "Need Approve"
-            txt_color = Color.YELLOW
+            txt_color = Color.rgb(240,111,0)
         } else {
             statusText = "Waiting"
-            txt_color = Color.RED
+            txt_color = Color.rgb(172,19,19)
         }
     }
 }

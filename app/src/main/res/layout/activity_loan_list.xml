@@ -5,19 +5,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".LoanListActivity">
+        tools:context=".activity.LoanListActivity">
 
     <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@color/colorApp"
-            >
+            android:background="@color/colorApp">
 
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                >
+                android:gravity="center">
 
             <ImageView
                     android:layout_width="50dp"
@@ -32,7 +30,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
-                    android:text="Lending"
+                    android:textSize="18sp"
+                    android:text="Loan List"
                     android:textColor="#FFFFFF"
                     android:gravity="center"
                     />
@@ -51,7 +50,7 @@
             android:id="@+id/amountSearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp"
+            android:padding="10dp"
             android:orientation="vertical">
 
         <TextView
@@ -62,7 +61,7 @@
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:orientation="horizontal">
 
             <EditText
@@ -101,17 +100,23 @@
     <LinearLayout
             android:id="@+id/laonListView"
             android:orientation="vertical"
-            android:padding="15dp"
+            android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         <TextView
-                android:layout_width="match_parent"
+                android:layout_width="20dp"
                 android:layout_height="wrap_content"
                 android:text="LISTS"/>
 
+        <View
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/colorGray"
+                android:layout_width="280dp"
+                android:layout_height="1dp"/>
+
         <androidx.recyclerview.widget.RecyclerView
-                tools:itemCount="3"
                 tools:listitem="@layout/loan_list_card"
                 android:id="@+id/rvLoanListView"
                 android:layout_width="match_parent"

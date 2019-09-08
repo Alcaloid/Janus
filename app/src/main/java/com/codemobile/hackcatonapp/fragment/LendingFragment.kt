@@ -36,7 +36,6 @@ class LendingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         init()
         setAccount(view)
         setLending(view)
@@ -86,11 +85,11 @@ class LendingFragment : Fragment() {
 
     fun showImageArrayEmpty() {
         if (lendingArrayList.isNotEmpty()) {
-            image_notLeanding.visibility = View.GONE
-            txt_notLeanding.visibility = View.GONE
+            image_notLeanding?.visibility = View.GONE
+            txt_notLeanding?.visibility = View.GONE
         } else {
-            image_notLeanding.visibility = View.VISIBLE
-            txt_notLeanding.visibility = View.VISIBLE
+            image_notLeanding?.visibility = View.VISIBLE
+            txt_notLeanding?.visibility = View.VISIBLE
         }
     }
 

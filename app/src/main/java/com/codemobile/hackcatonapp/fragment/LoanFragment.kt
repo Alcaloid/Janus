@@ -68,11 +68,11 @@ class LoanFragment : Fragment() {
 
     private fun checkUserLoan() {
         if (loaningArrayList.isEmpty()) {
-            image_notLoanding.visibility = View.VISIBLE
-            txt_notLoan.visibility = View.VISIBLE
+            image_notLoanding?.visibility = View.VISIBLE
+            txt_notLoan?.visibility = View.VISIBLE
         } else {
-            image_notLoanding.visibility = View.GONE
-            txt_notLoan.visibility = View.GONE
+            image_notLoanding?.visibility = View.GONE
+            txt_notLoan?.visibility = View.GONE
         }
     }
 

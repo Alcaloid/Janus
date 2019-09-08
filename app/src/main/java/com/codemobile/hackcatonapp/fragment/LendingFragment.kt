@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.codemobile.hackcatonapp.LENDER_MONEY
 import com.codemobile.hackcatonapp.LENDING_ID
 import com.codemobile.hackcatonapp.USER_ID_LENDER
 import com.codemobile.hackcatonapp.USER_LIST
@@ -60,10 +61,23 @@ class LendingFragment : Fragment() {
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1){
+            if (resultCode == 1){
+                val balaceMoney = data?.getStringExtra("result")
+                moneyAccountArray[0] = balaceMoney.toString()
+                accountAdapter?.notifyDataSetChanged()
+            }
+        }
+    }
+
     private fun setOnAddLending() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
-            startActivity(Intent(context, AddLendingActivity::class.java))
+            val intent: Intent = Intent(context, AddLendingActivity::class.java)
+            intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
+            startActivityForResult(intent,1)
         }
     }
 

@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.LENDER_MONEY
-import com.codemobile.hackcatonapp.LENDING_ID
-import com.codemobile.hackcatonapp.USER_ID_LENDER
-import com.codemobile.hackcatonapp.USER_LIST
+import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.lendingactivity.AddLendingActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
@@ -110,7 +107,7 @@ class LendingFragment : Fragment() {
 
     fun init() {
         database = FirebaseFirestore.getInstance()
-        LeandingRef = database.collection("Leanding")
+        LeandingRef = database.collection(LENDER_DATABASE)
     }
 
     private fun setAccount(_view: View) {

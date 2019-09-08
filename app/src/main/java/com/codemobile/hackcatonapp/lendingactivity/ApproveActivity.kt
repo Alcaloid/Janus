@@ -3,9 +3,7 @@ package com.codemobile.hackcatonapp.lendingactivity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.LENDING_ID
-import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.USER_LIST
+import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.adapter.NeedApproveAdapter
 import com.codemobile.hackcatonapp.interfaces.UpdateApprove
 import com.codemobile.hackcatonapp.model.UserModel
@@ -39,8 +37,8 @@ class ApproveActivity : AppCompatActivity() {
 
     fun setupFirebase() {
         database = FirebaseFirestore.getInstance()
-        userRef = database.collection("User")
-        LeandingRef = database.collection("Leanding")
+        userRef = database.collection(USER_DATABASE)
+        LeandingRef = database.collection(LENDER_DATABASE)
     }
 
     fun init() {

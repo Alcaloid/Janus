@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.codemobile.hackcatonapp.LENDER_DATABASE
 import com.codemobile.hackcatonapp.LENDER_MONEY
+import com.codemobile.hackcatonapp.USER_DATABASE
 import com.codemobile.hackcatonapp.USER_ID_LENDER
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
@@ -45,8 +47,8 @@ class AddLendingActivity : AppCompatActivity() {
 
     fun init() {
         database = FirebaseFirestore.getInstance()
-        UserRef = database.collection("User")
-        LeandingRef = database.collection("Leanding")
+        UserRef = database.collection(USER_DATABASE)
+        LeandingRef = database.collection(LENDER_DATABASE)
         lenderMoney = intent.getStringExtra(LENDER_MONEY).toInt()
     }
 

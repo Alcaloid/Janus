@@ -79,7 +79,9 @@ class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, v
         holder.pay_duedate.text = "Due Date: ${dataArrayList[position].period}"
         holder.pay_total.text = "Total: ${getTotalPayment(position)}"
         holder.pay_button.setOnClickListener {
-            println("Pay!!!")
+            if (dataArrayList[position].lender!=null){
+                queryUser.queryUserData(arrayListOf(dataArrayList[position].lender!!),dataArrayList[position].id)
+            }
         }
     }
 

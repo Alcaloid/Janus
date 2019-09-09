@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
             if (snapshot != null && snapshot.exists()) {
                 money = snapshot["Money"].toString()
             }
-            balance.text = money
+            balance?.text = money
         }
     }
 

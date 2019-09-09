@@ -14,7 +14,6 @@ import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.USER_DATABASE
 import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
-import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LoanerAdapter
 import com.codemobile.hackcatonapp.interfaces.QueryUser
@@ -22,7 +21,6 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.FieldPosition
 
 class LoanFragment : Fragment() {
 
@@ -31,6 +29,7 @@ class LoanFragment : Fragment() {
 
     private var loaningAdapter: LoanerAdapter? = null
     private var accountAdapter: AccountAdapter? = null
+    private var payment_amount:Int? =null
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
@@ -54,7 +53,10 @@ class LoanFragment : Fragment() {
     private fun setLoan(_view: View) {
         loaningAdapter = LoanerAdapter(loaningArrayList, 1, object : QueryUser {
             override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                updateLoanerMoney()
+                getLenderMoney(userArrayList[0])
+                deleteUserGet(id)
+                checkUserLoan()
             }
 
         })
@@ -62,6 +64,31 @@ class LoanFragment : Fragment() {
             it.adapter = loaningAdapter
             it.layoutManager = LinearLayoutManager(context)
         }
+    }
+
+    private fun deleteUserGet(id: String?) {
+        id?.let { LeandingRef.document(it).update("userGet",FieldValue.arrayRemove(USER_ID_LOANER)) }
+    }
+
+    private fun getLenderMoney(id: String?) {
+        id?.let {
+            UserRef.document(it).get().addOnSuccessListener {doc->
+                if (doc != null && payment_amount != null){
+                    val lenderMoney = doc["Money"]
+                    val lenderBalance = lenderMoney.toString().toInt() + payment_amount!!
+                    updateLenderMoney(lenderBalance,id)
+                }
+            }
+        }
+    }
+
+    private fun updateLenderMoney(money: Int,id: String?) {
+        id?.let { UserRef.document(it).update("Money",money) }
+    }
+
+    private fun updateLoanerMoney() {
+        val loanerMoney:Int = moneyAccountArray[0].toInt() - payment_amount as Int
+        UserRef.document(USER_ID_LOANER).update("Money",loanerMoney)
     }
 
     private fun setOnAddLoaning() {
@@ -110,14 +137,18 @@ class LoanFragment : Fragment() {
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
                 loaningArrayList.add(result)
+                payment_amount = getTotalPayment(result.limit as Int,result.interest as Int)
                 loaningArrayList[loaningArrayList.lastIndex].id = it.id
                 loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lenderName").toString()
             }
-//            queryLenderName()
             checkGetLoan(0)
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
         }
+    }
+
+    private fun getTotalPayment(limit: Int, interest: Int): Int? {
+        return (limit + (limit * interest)/100)
     }
 
     fun notificationUserMoney(){
@@ -146,24 +177,6 @@ class LoanFragment : Fragment() {
         database = FirebaseFirestore.getInstance()
         LeandingRef = database.collection(LENDER_DATABASE)
         UserRef = database.collection(USER_DATABASE)
-    }
-
-    private fun queryLenderName() {
-        for (i in 0 until loaningArrayList.size - 1) {
-            getLenderName(loaningArrayList[i].lenderName.toString(), i)
-        }
-    }
-
-    private fun getLenderName(id: String, index: Int) {
-        UserRef.document(id).get()
-            .addOnSuccessListener { result ->
-                val lenderName = result.get("Name")
-                loaningArrayList[index].lenderName = lenderName.toString()
-                loaningAdapter?.notifyDataSetChanged()
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(context, "Fail to read data", Toast.LENGTH_SHORT).show()
-            }
     }
 
     private fun setAccount(_view: View) {

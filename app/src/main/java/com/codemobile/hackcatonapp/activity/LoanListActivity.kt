@@ -57,7 +57,7 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val lendingData = document.toObject(LendingModel::class.java)
-                    if(lendingData.id != USER_ID_LOANER){
+                    if(lendingData.id != USER_ID_LOANER && !lendingData.status){
                         lenderArray.add(lendingData)
                         lenderArray[lenderArray.lastIndex].lenderName = document.get("lenderName").toString()
                         lenderArray[lenderArray.lastIndex].id = document.id

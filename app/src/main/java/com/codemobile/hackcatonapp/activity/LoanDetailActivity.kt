@@ -1,6 +1,7 @@
 package com.codemobile.hackcatonapp.activity
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import com.codemobile.hackcatonapp.model.Loan
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_loan_detail.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.DecimalFormat
 
 class LoanDetailActivity : AppCompatActivity() {
@@ -34,6 +36,12 @@ class LoanDetailActivity : AppCompatActivity() {
             val intent = Intent(this, LoanListActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        deepLink.setOnClickListener {
+            val uri = Uri.parse("scbeasysim://billpayment-anonymous/6d53a6c7-d31b-4f11-84ee-7f5ffdd9ebf1?callback_url=https://easy-loan.com/loan")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(intent)
         }
 
     }

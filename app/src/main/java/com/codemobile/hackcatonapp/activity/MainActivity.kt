@@ -2,6 +2,7 @@ package com.codemobile.hackcatonapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.fragment.HomeFragment
 import com.codemobile.hackcatonapp.fragment.LendingFragment

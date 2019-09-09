@@ -158,6 +158,12 @@
                 android:background="@drawable/corner_button"
                 android:layout_marginHorizontal="40dp"
                 />
+        <Button
+                android:id="@+id/deepLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="deep link"/>
+
     </LinearLayout>
 
 </LinearLayout>

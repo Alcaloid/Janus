@@ -45,6 +45,8 @@ class LoanFragment : Fragment() {
         setLoan(view)
         notificationLoanOfUser()
         setOnAddLoaning()
+
+
     }
 
     private fun setLoan(_view: View) {

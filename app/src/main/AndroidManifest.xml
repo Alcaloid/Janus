@@ -15,6 +15,11 @@
         <activity android:name=".lendingactivity.AddLendingActivity">
         </activity>
         <activity android:name=".activity.LoanDetailActivity">
+        </activity>
+        <activity android:name=".activity.LoanListActivity">
+        </activity>
+        <activity android:name=".activity.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -25,15 +30,6 @@
                         android:scheme="https"
                         android:host="easy-loan.com"
                         android:pathPrefix="/loan"/>
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.LoanListActivity">
-        </activity>
-        <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-
-                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
     </application>

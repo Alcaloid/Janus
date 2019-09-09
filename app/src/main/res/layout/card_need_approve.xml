@@ -20,6 +20,7 @@
                 android:layout_height="wrap_content">
 
             <TextView
+                    android:textSize="16sp"
                     android:id="@+id/txt_username"
                     android:text="Username"
                     android:textColor="@color/colorBlack"
@@ -33,6 +34,7 @@
                     />
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:id="@+id/linear_need_approve_information"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -40,16 +42,13 @@
                     android:layout_below="@+id/txt_username"
                     android:layout_marginHorizontal="40dp"
                     >
-
                 <TextView
-                        android:id="@+id/txt_need_approve_income"
+                        android:id="@+id/txt_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:ellipsize="end"
-                        android:text="Income"
-                        />
-
+                        android:text="Address"/>
                 <TextView
                         android:id="@+id/txt_need_approve_job"
                         android:layout_width="match_parent"
@@ -60,6 +59,20 @@
                         />
 
                 <TextView
+                        android:id="@+id/txt_need_approve_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="Income"/>
+                <TextView
+                        android:id="@+id/txt_source_income"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="Source of income"/>
+                <TextView
                         android:id="@+id/txt_need_approve_company"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -67,9 +80,18 @@
                         android:ellipsize="end"
                         android:text="Company"
                         />
+                <TextView
+                        android:id="@+id/txt_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:text="Loan/ Repayment history"/>
+
             </LinearLayout>
 
             <Button
+                    android:layout_marginTop="10dp"
                     android:id="@+id/btn_approve"
                     android:text="Approve"
                     android:textColor="@color/colorPurple"

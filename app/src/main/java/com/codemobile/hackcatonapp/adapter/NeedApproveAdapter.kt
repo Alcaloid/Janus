@@ -27,10 +27,14 @@ class NeedApproveAdapter(val dataArrayList: ArrayList<UserModel>, val updateAppr
     }
 
     override fun onBindViewHolder(holder: UserInformationHolder, position: Int) {
-        holder.name.text = dataArrayList[position].Name
-        holder.income.text = "Income: ${dataArrayList[position].Income}฿ per month"
-        holder.job.text = "Job Title: ${dataArrayList[position].Job}"
-        holder.company.text = "Company name:${dataArrayList[position].Company}"
+        val item = dataArrayList[position]
+        holder.name.text = item.Name
+        holder.income.text = "Income:  ${item.Income}฿ per month"
+        holder.job.text = "Job Title:  ${item.Job}"
+        holder.company.text = "Company name:  ${item.Company}"
+        holder.address.text = "Address:  ${item.Address}"
+        holder.sourceIncome.text = "Source of income:  ${item.SourceIncome}"
+        holder.history.text = "Loan/ Repayment history:  ${item.LoanRepaymentHistory}"
         holder.approve.setOnClickListener {
             updateApprove.updateLending(dataArrayList[position].id as String)
         }
@@ -44,4 +48,7 @@ class UserInformationHolder(view: View) : RecyclerView.ViewHolder(view) {
     val job = view.txt_need_approve_job
     val company = view.txt_need_approve_company
     val approve = view.btn_approve
+    val address = view.txt_address
+    val sourceIncome = view.txt_source_income
+    val history = view.txt_history
 }

@@ -1,5 +1,6 @@
 package com.codemobile.hackcatonapp.activity
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
@@ -43,10 +44,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkUserPayment() {
-//        val x:Boolean = false
-//        if (x){
-//            AlertDialo
-//        }
+        val x: Boolean = false
+        if (x) {
+            AlertDialog.Builder(this).setTitle("Payment").setMessage("DueDate Payment have arrive")
+                .setPositiveButton("Pay", DialogInterface.OnClickListener { dialogInterface, i -> }).create()
+        }
     }
 
     private fun changeFragment(id: Int) {

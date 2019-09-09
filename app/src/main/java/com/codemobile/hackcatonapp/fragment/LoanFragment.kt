@@ -16,7 +16,7 @@ import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
 import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
-import com.codemobile.hackcatonapp.adapter.LeandingAdapter
+import com.codemobile.hackcatonapp.adapter.LoanerAdapter
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
@@ -28,7 +28,7 @@ class LoanFragment : Fragment() {
     private val moneyAccountArray: ArrayList<String> = arrayListOf("2000", "100", "3000")
     private val loaningArrayList: ArrayList<LendingModel> = arrayListOf()
 
-    private var loaningAdapter: LeandingAdapter? = null
+    private var loaningAdapter: LoanerAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
     lateinit var database: FirebaseFirestore
@@ -50,10 +50,11 @@ class LoanFragment : Fragment() {
     }
 
     private fun setLoan(_view: View) {
-        loaningAdapter = LeandingAdapter(loaningArrayList, 1, object : QueryUser {
+        loaningAdapter = LoanerAdapter(loaningArrayList, 1, object : QueryUser {
             override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
-                //set on click
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
+
         })
         rcv_myLoaning.let {
             it.adapter = loaningAdapter

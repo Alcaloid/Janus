@@ -13,18 +13,17 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import java.text.DecimalFormat
 
 
-
 class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var txt_color: Int = Color.RED
     var statusText: String = "Waiting"
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LeandingHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == 1) {
-            return LeandingHolder(
+            return LoanerHolder(
                 LayoutInflater.from(parent.context).inflate(
-                    com.codemobile.hackcatonapp.R.layout.card_my_lending,
+                    com.codemobile.hackcatonapp.R.layout.card_loaner_payment_lender,
                     parent,
                     false
                 )
@@ -41,9 +40,9 @@ class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, v
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (checkLenderApprove(position)){
+        if (checkLenderApprove(position)) {
             return VIEW_CARD__LENDER_APPROVE
-        }else{
+        } else {
             return VIEW_CARD_LENDER
         }
     }
@@ -57,32 +56,49 @@ class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, v
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder.itemViewType){
+        when (holder.itemViewType) {
             0 -> {
                 val viewHolder = holder as LeandingHolder
-                setCardNotApprove(viewHolder,position)
+                setCardNotApprove(viewHolder, position)
             }
             1 -> {
-
+                val viewHolder = holder as LoanerHolder
+                setCardPayment(viewHolder, position)
             }
         }
 
     }
 
+    private fun setCardPayment(holder: LoanerHolder, position: Int) {
+        val formatter = DecimalFormat("#,###,###.##")
+        val money = formatter.format(dataArrayList[position].limit)
+        holder.pay_amount.text = money
+        holder.pay_interest.text = dataArrayList[position].interest.toString()
+        holder.pay_status.text = "Approve"
+        holder.pay_status.setTextColor(Color.GREEN)
+        holder.pay_duedate.text = dataArrayList[position].period
+        holder.pay_total.text = getTotalPayment(position)
+        holder.pay_button.setOnClickListener {
+            println("Pay!!!")
+        }
+    }
+
+    private fun getTotalPayment(position: Int): String {
+        val principleMoney = dataArrayList[position].limit as Int
+        val interest = dataArrayList[position].interest as Int
+        return (principleMoney + (principleMoney * interest)/100).toString()
+    }
+
     private fun setCardNotApprove(holder: LeandingHolder, position: Int) {
-        if (getItemViewType(position)== VIEW_CARD_LENDER){
-            val formatter = DecimalFormat("#,###,###.##")
-            val limit = formatter.format(dataArrayList[position].limit)
-            holder.limit.text = "Limit: ${limit}฿"
-            holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
-            holder.period.text = "Period: ${dataArrayList[position].period}"
-            if (role == 0) {
-                setCardLender(holder, position)
-            } else {
-                setCardLoaning(holder, position)
-            }
-        }else{
-            holder.limit.text = "XXXXXXXX"
+        val formatter = DecimalFormat("#,###,###.##")
+        val limit = formatter.format(dataArrayList[position].limit)
+        holder.limit.text = "Limit: ${limit}฿"
+        holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
+        holder.period.text = "Period: ${dataArrayList[position].period}"
+        if (role == 0) {
+            setCardLender(holder, position)
+        } else {
+            setCardLoaning(holder, position)
         }
     }
 

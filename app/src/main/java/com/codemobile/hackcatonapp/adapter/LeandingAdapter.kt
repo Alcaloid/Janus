@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
-import kotlinx.android.synthetic.main.card_my_lending.view.*
 import java.text.DecimalFormat
 
 class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :

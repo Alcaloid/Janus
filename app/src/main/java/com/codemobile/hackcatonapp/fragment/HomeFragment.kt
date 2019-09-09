@@ -28,8 +28,10 @@ class HomeFragment : Fragment() {
         notificationUserMoney()
 
         if (USER_ID_LENDER == "1" && USER_ID_LOANER == "1") {
+            view.nametxt.setText("Peter Parker")
             view.profileimg.setImageResource(R.drawable.profile01)
         } else if (USER_ID_LENDER == "2" && USER_ID_LOANER == "2") {
+            view.nametxt.setText("Peter Parker")
             view.profileimg.setImageResource(R.drawable.profile02)
         }
     }

@@ -28,7 +28,7 @@
 
                     <LinearLayout
                             android:orientation="vertical"
-                            android:layout_height="112dp"
+                            android:layout_height="117dp"
                             android:layout_width="match_parent"
                             android:background="@color/colorApp"
                             android:theme="@style/AppTheme.AppBarOverlay"
@@ -51,7 +51,6 @@
                                 android:layout_gravity="center_horizontal"
                                 android:text="John Smith"
                                 android:textSize="20dp"
-
                                 android:textColor="@color/colorTxt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -75,7 +74,7 @@
 
                 <ImageView
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="65dp"
+                        android:layout_marginTop="70dp"
                         android:id="@+id/profileimg"
                         android:scaleType="centerCrop"
                         android:src="@drawable/profile01"

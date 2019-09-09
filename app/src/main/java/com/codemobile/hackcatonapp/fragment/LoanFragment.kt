@@ -50,7 +50,7 @@ class LoanFragment : Fragment() {
     }
 
     private fun setLoan(_view: View) {
-        loaningAdapter = LeandingAdapter(loaningArrayList,1,object : QueryUser {
+        loaningAdapter = LeandingAdapter(loaningArrayList, 1, object : QueryUser {
             override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                 //set on click
             }
@@ -72,19 +72,19 @@ class LoanFragment : Fragment() {
     }
 
     private fun checkUserSendLoan() {
-        if (loaningArrayList.isEmpty()){
+        if (loaningArrayList.isEmpty()) {
             val intent = Intent(context, LoanListActivity::class.java)
             startActivity(intent)
-        }else{
+        } else {
             deleteUserLoan()
         }
     }
 
     private fun deleteUserLoan() {
-        var hashMap:HashMap<String,Any> = HashMap()
-        hashMap["userGet.${com.codemobile.hackcatonapp.USER_ID_LOANER}"] = FieldValue.delete()
-        btn_toLoadlist.text = "Loan"
-//        LeandingRef.document(loaningArrayList)
+        btn_toLoadlist?.text = "Loan"
+        loaningArrayList[0].id?.let {
+            LeandingRef.document(it).update("userGet", FieldValue.arrayRemove(USER_ID_LOANER))
+        }
 
     }
 
@@ -119,8 +119,8 @@ class LoanFragment : Fragment() {
     }
 
     private fun checkGetLoan() {
-        if (loaningArrayList.isNotEmpty()){
-            btn_toLoadlist.text = "Cancel"
+        if (loaningArrayList.isNotEmpty()) {
+            btn_toLoadlist?.text = "Cancel"
         }
     }
 
@@ -131,12 +131,12 @@ class LoanFragment : Fragment() {
     }
 
     private fun queryLenderName() {
-        for (i in 0 until loaningArrayList.size-1) {
-            getLenderName(loaningArrayList[i].lenderName.toString(),i)
+        for (i in 0 until loaningArrayList.size - 1) {
+            getLenderName(loaningArrayList[i].lenderName.toString(), i)
         }
     }
 
-    private fun getLenderName(id: String,index:Int){
+    private fun getLenderName(id: String, index: Int) {
         UserRef.document(id).get()
             .addOnSuccessListener { result ->
                 val lenderName = result.get("Name")

@@ -16,6 +16,7 @@ import com.codemobile.hackcatonapp.lendingactivity.ApproveActivity
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_lend.*
 
 class LendingFragment : Fragment() {

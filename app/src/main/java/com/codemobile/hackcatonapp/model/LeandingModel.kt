@@ -10,5 +10,6 @@ data class LendingModel(
     var status: Boolean = false,
     var description: String? = null,
     var lenderName:String? = null,
+    var lender:String? = null,
     val userGet: ArrayList<String> = arrayListOf()
 ):Serializable

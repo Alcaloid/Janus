@@ -11,7 +11,7 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import kotlinx.android.synthetic.main.card_my_lending.view.*
 import java.text.DecimalFormat
 
-class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>,val role:Int, val queryUser: QueryUser) :
+class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :
     RecyclerView.Adapter<LeandingHolder>() {
 
     var txt_color: Int = Color.RED
@@ -37,14 +37,14 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>,val role:Int, v
         holder.limit.text = "Limit: ${limit}฿"
         holder.interest.text = "Interest: ${dataArrayList[position].interest}%"
         holder.period.text = "Period: ${dataArrayList[position].period}"
-        if (role == 0){
-            setCardLender(holder,position)
-        }else{
-            setCardLoaning(holder,position)
+        if (role == 0) {
+            setCardLender(holder, position)
+        } else {
+            setCardLoaning(holder, position)
         }
     }
 
-    fun setCardLender(holder: LeandingHolder, position: Int){
+    fun setCardLender(holder: LeandingHolder, position: Int) {
         setStatusText(position)
         holder.name.visibility = View.GONE
         holder.status.setTextColor(txt_color)
@@ -56,7 +56,7 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>,val role:Int, v
         }
     }
 
-    fun setCardLoaning(holder: LeandingHolder, position: Int){
+    fun setCardLoaning(holder: LeandingHolder, position: Int) {
         holder.detail.visibility = View.GONE
         holder.status.setTextColor(txt_color)
         holder.status.text = statusText
@@ -66,22 +66,15 @@ class LeandingAdapter(val dataArrayList: ArrayList<LendingModel>,val role:Int, v
     fun setStatusText(position: Int) {
         if (dataArrayList[position].status) {
             statusText = "Lending"
-            txt_color = Color.rgb(54,172,19)
+            txt_color = Color.rgb(54, 172, 19)
         } else if (dataArrayList[position].userGet.isNotEmpty()) {
             statusText = "Need Approve"
-            txt_color = Color.rgb(240,111,0)
+            txt_color = Color.rgb(240, 111, 0)
         } else {
             statusText = "Waiting"
-            txt_color = Color.rgb(172,19,19)
+            txt_color = Color.rgb(172, 19, 19)
         }
     }
 }
 
-class LeandingHolder(view: View) : RecyclerView.ViewHolder(view) {
-    val name = view.txt_card_lender_lenderName
-    val limit = view.txt_limit
-    val interest = view.txt_interest
-    val period = view.txt_period
-    val status = view.txt_status
-    val detail = view.txt_detail
-}
+

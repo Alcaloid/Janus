@@ -68,7 +68,7 @@ class AddLendingActivity : AppCompatActivity() {
             "userGet" to arrayListOf<String>()
         )
         LeandingRef.document(id).set(hashMap)
-        updateMyLeanderInUser(id)
+//        updateMyLeanderInUser(id)
     }
 
     private fun checkDataEmpty(): Boolean {

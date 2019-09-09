@@ -18,19 +18,20 @@ class HomeFragment : Fragment() {
     var money: String? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-        val _view = inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         init()
         notificationUserMoney()
 
         if (USER_ID_LENDER == "1" && USER_ID_LOANER == "1") {
-            _view.profileimg.setImageResource(R.drawable.profile01)
+            view.profileimg.setImageResource(R.drawable.profile01)
         } else if (USER_ID_LENDER == "2" && USER_ID_LOANER == "2") {
-            _view.profileimg.setImageResource(R.drawable.profile02)
+            view.profileimg.setImageResource(R.drawable.profile02)
         }
-
-        return _view
     }
 
     fun notificationUserMoney() {

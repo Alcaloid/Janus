@@ -30,6 +30,8 @@ class LoanFragment : Fragment() {
     private var loaningAdapter: LoanerAdapter? = null
     private var accountAdapter: AccountAdapter? = null
     private var payment_amount:Int? =null
+    private var loanerAuthorization : String? = null
+    private var loanerResourceOwnerId:String? = null
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
@@ -158,7 +160,9 @@ class LoanFragment : Fragment() {
                 return@addSnapshotListener
             }
             if (snapshot != null && snapshot.exists()){
+                //data loaner
                 moneyAccountArray[0] = snapshot["Money"].toString()
+
             }
             accountAdapter?.notifyDataSetChanged()
         }

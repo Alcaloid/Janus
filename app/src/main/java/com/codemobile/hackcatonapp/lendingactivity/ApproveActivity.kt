@@ -33,7 +33,9 @@ class ApproveActivity : AppCompatActivity() {
 
         setupFirebase()
         init()
+        queryLenderData()
         queryUserInformation(userArray)
+
         btn_backFromApprove.setOnClickListener {
             finish()
         }
@@ -86,7 +88,19 @@ class ApproveActivity : AppCompatActivity() {
         }
     }
 
+    fun queryLenderData(){
+        userRef.document(USER_ID_LENDER).get().addOnSuccessListener {document ->
+            if (document != null) {
+                //data lender
+            } else {
+                Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
+
     private fun updateUserLoaner(id: String) {
+        //target user
         userRef.document(id).get().addOnSuccessListener { document ->
             if (document != null) {
                 var targetMoney = document["Money"].toString().toInt()

@@ -2,6 +2,7 @@ package com.codemobile.hackcatonapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.fragment.HomeFragment
 import com.codemobile.hackcatonapp.fragment.LendingFragment
@@ -34,10 +35,18 @@ class MainActivity : AppCompatActivity() {
         loanFragment = LoanFragment()
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
 
+        checkUserPayment()
         val fragment = supportFragmentManager.findFragmentById(R.id.container)
         if (fragment == null) {
             changeFragment(navigation.selectedItemId)
         }
+    }
+
+    private fun checkUserPayment() {
+//        val x:Boolean = false
+//        if (x){
+//            AlertDialo
+//        }
     }
 
     private fun changeFragment(id: Int) {

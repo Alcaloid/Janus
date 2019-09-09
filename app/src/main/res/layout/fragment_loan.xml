@@ -137,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorApp"
                     android:text="Payment"
+                    android:visibility="gone"
                     android:background="@drawable/corner_button"/>
         </LinearLayout>
     </ScrollView>

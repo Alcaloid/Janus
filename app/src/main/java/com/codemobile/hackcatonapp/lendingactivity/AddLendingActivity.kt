@@ -53,7 +53,7 @@ class AddLendingActivity : AppCompatActivity() {
         database = FirebaseFirestore.getInstance()
         UserRef = database.collection(USER_DATABASE)
         LeandingRef = database.collection(LENDER_DATABASE)
-        lenderMoney = intent.getStringExtra(LENDER_MONEY).toInt()
+//        lenderMoney = intent.getStringExtra(LENDER_MONEY).toInt()
     }
 
     private fun addMyLeanderToDatabase(userDataSet: LendingModel) {

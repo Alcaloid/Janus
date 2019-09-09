@@ -74,53 +74,71 @@
             android:layout_marginBottom="5dp"
             />
     <ScrollView
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <RelativeLayout
+        <LinearLayout
+                android:layout_gravity=""
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_myLoaning"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/loan_list_card"
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_myLoaning"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/loan_list_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-            <ImageView
-                    android:id="@+id/image_notLoanding"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/ic_no_loaning"
-                    android:visibility="gone"/>
+                </androidx.recyclerview.widget.RecyclerView>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image_notLoanding"
-                    android:layout_centerHorizontal="true"
-                    android:text="No Loaning"
-                    android:visibility="gone"
-                    android:textColor="@color/colorNoL"
-                    android:id="@+id/txt_notLoan"/>
+                <ImageView
+              
+                        android:layout_marginTop="90dp"
+                        android:id="@+id/image_notLoanding"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="200dp"
+                        android:layout_height="180dp"
+                        android:src="@drawable/ic_no_loaning"
+                        android:visibility="visible"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/image_notLoanding"
+                        android:layout_centerHorizontal="true"
+                        android:text="No Loaning"
+                        android:visibility="visible"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorNoL"
+                        android:id="@+id/txt_notLoan"/>
+            </RelativeLayout>
 
             <Button
-                    android:layout_below="@id/rcv_myLoaning"
+                    android:layout_gravity="center"
                     android:id="@+id/btn_toLoadlist"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_marginTop="20dp"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorApp"
                     android:text="Loan"
-                    android:background="@drawable/corner_button"
-                    android:layout_marginHorizontal="40dp"
-                    android:layout_marginBottom="20dp"/>
-        </RelativeLayout>
+                    android:background="@drawable/corner_button"/>
+            <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/btnPayment"
+                    android:layout_width="320dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorApp"
+                    android:text="Payment"
+                    android:background="@drawable/corner_button"/>
+        </LinearLayout>
     </ScrollView>
 
 

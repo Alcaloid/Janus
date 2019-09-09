@@ -14,6 +14,7 @@ import com.codemobile.hackcatonapp.R
 import com.codemobile.hackcatonapp.USER_DATABASE
 import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
+import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.interfaces.QueryUser
@@ -62,6 +63,10 @@ class LoanFragment : Fragment() {
     private fun setOnAddLoaning() {
         btn_toLoadlist.setOnClickListener {
             val intent = Intent(context, LoanListActivity::class.java)
+            startActivity(intent)
+        }
+        btnPayment.setOnClickListener {
+            val intent = Intent(context, PaymentActivity::class.java)
             startActivity(intent)
         }
     }

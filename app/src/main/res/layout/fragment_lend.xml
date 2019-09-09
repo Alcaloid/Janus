@@ -72,45 +72,57 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="50dp"/>
+
     <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <RelativeLayout
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_myLending"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/card_my_lending"
+            <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_myLending"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/card_my_lending"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
 
-            <ImageView
-                    android:id="@+id/image_notLeanding"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/lend"
-                    android:visibility="gone"
-                    android:tint="#C9C9C9"/>
+                <ImageView
+                        android:scaleType="fitCenter"
+                        android:layout_marginTop="70dp"
+                        android:foregroundGravity="center"
+                        android:id="@+id/image_notLeanding"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:src="@drawable/ic_nolending"
+                        android:visibility="visible"/>
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/image_notLeanding"
-                    android:layout_centerHorizontal="true"
-                    android:text="No Lending"
-                    android:visibility="gone"
-                    android:textColor="#C9C9C9"
-                    android:id="@+id/txt_notLeanding"/>
+                <TextView
+                        android:layout_marginTop="0dp"
+                        android:textStyle="bold"
+                        android:layout_below="@id/image_notLeanding"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorNoL"
+                        android:layout_centerHorizontal="true"
+                        android:text="No Lending"
+                        android:visibility="visible"
+                        android:layout_marginBottom="70dp"
+                        android:id="@+id/txt_notLeanding"/>
+            </RelativeLayout>
+
             <Button
-                    android:layout_below="@+id/rcv_myLending"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="320dp"
+                    android:layout_height="match_parent"
                     android:text="Add Lending"
                     android:layout_marginTop="20dp"
                     android:id="@+id/btn_addLending"
@@ -118,11 +130,9 @@
                     android:layout_marginHorizontal="40dp"
                     android:layout_marginBottom="20dp"
                     android:textColor="@color/colorApp"/>
-        </RelativeLayout>
+        </LinearLayout>
 
     </ScrollView>
-
-
 
 
 </LinearLayout>

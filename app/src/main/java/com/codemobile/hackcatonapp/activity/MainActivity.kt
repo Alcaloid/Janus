@@ -9,6 +9,7 @@ import com.codemobile.hackcatonapp.fragment.LoanFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
+
 class MainActivity : AppCompatActivity() {
 
     lateinit var leandingFragment: LendingFragment

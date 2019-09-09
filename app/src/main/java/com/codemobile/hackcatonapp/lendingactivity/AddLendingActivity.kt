@@ -30,14 +30,15 @@ class AddLendingActivity : AppCompatActivity() {
         init()
         btn_add_card_lending.setOnClickListener {
             if (checkDataEmpty()) {
-                if (checkLenderMoney()) {
-                    val returnIntent = Intent()
-                    returnIntent.putExtra("result", calculateMoneyBalance())
-                    setResult(1, returnIntent)
-                    addMyLeanderToDatabase(setDataLending())
-                } else {
-                    messageErrorAddLending()
-                }
+                addMyLeanderToDatabase(setDataLending())
+//                if (checkLenderMoney()) {
+//                    val returnIntent = Intent()
+//                    returnIntent.putExtra("result", calculateMoneyBalance())
+//                    setResult(1, returnIntent)
+//                    addMyLeanderToDatabase(setDataLending())
+//                } else {
+//                    messageErrorAddLending()
+//                }
             } else {
                 messageErrorAddLending()
             }

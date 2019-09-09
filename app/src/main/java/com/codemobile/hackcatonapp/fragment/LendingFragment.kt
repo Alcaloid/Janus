@@ -21,13 +21,14 @@ import kotlinx.android.synthetic.main.fragment_lend.*
 
 class LendingFragment : Fragment() {
 
-    private val moneyAccountArray: ArrayList<String> = arrayListOf("100000", "2000", "10000")
+    private val moneyAccountArray: ArrayList<String> = arrayListOf("100000")
     private val lendingArrayList: ArrayList<LendingModel> = arrayListOf()
     private var leandingAdapter: LeandingAdapter? = null
     private var accountAdapter: AccountAdapter? = null
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
+    lateinit var UserRef:CollectionReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(com.codemobile.hackcatonapp.R.layout.fragment_lend, container, false)
@@ -39,6 +40,7 @@ class LendingFragment : Fragment() {
         setAccount(view)
         setLending(view)
         notificationUserGetLending()
+        notificationUserMoney()
         setOnAddLending()
     }
 
@@ -48,6 +50,7 @@ class LendingFragment : Fragment() {
                 override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                     val intent: Intent = Intent(context, ApproveActivity::class.java)
                     intent.putExtra(USER_LIST, userArrayList)
+                    intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
                     intent.putExtra(LENDING_ID, id)
                     startActivity(intent)
                 }
@@ -58,23 +61,24 @@ class LendingFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1){
-            if (resultCode == 1){
-                val balaceMoney = data?.getStringExtra("result")
-                moneyAccountArray[0] = balaceMoney.toString()
-                accountAdapter?.notifyDataSetChanged()
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 1){
+//            if (resultCode == 1){
+//                val balaceMoney = data?.getStringExtra("result")
+//                moneyAccountArray[0] = balaceMoney.toString()
+//                accountAdapter?.notifyDataSetChanged()
+//            }
+//        }
+//    }
 
     private fun setOnAddLending() {
         leandingAdapter?.notifyDataSetChanged()
         btn_addLending.setOnClickListener {
             val intent: Intent = Intent(context, AddLendingActivity::class.java)
-            intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
-            startActivityForResult(intent,1)
+//            intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
+            startActivity(intent)
+//            startActivityForResult(intent,1)
         }
     }
 
@@ -95,6 +99,19 @@ class LendingFragment : Fragment() {
         }
     }
 
+    fun notificationUserMoney(){
+        //notification money of user
+        UserRef.document(USER_ID_LENDER).addSnapshotListener { snapshot, e ->
+            if (e != null){
+                return@addSnapshotListener
+            }
+            if (snapshot != null && snapshot.exists()){
+                moneyAccountArray[0] = snapshot["Money"].toString()
+            }
+            accountAdapter?.notifyDataSetChanged()
+        }
+    }
+
     fun showImageArrayEmpty() {
         if (lendingArrayList.isNotEmpty()) {
             image_notLeanding?.visibility = View.GONE
@@ -108,6 +125,7 @@ class LendingFragment : Fragment() {
     fun init() {
         database = FirebaseFirestore.getInstance()
         LeandingRef = database.collection(LENDER_DATABASE)
+        UserRef = database.collection(USER_DATABASE)
     }
 
     private fun setAccount(_view: View) {

@@ -47,6 +47,7 @@ class LoanFragment : Fragment() {
         setAccount(view)
         setLoan(view)
         notificationLoanOfUser()
+        notificationUserMoney()
         setOnAddLoaning()
     }
 
@@ -68,8 +69,7 @@ class LoanFragment : Fragment() {
             checkUserSendLoan()
         }
         btnPayment.setOnClickListener {
-            val intent = Intent(context, PaymentActivity::class.java)
-            startActivity(intent)
+            deleteUserLoan()
         }
     }
 
@@ -117,6 +117,19 @@ class LoanFragment : Fragment() {
             checkGetLoan(0)
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    fun notificationUserMoney(){
+        //notification money of user
+        UserRef.document(USER_ID_LOANER).addSnapshotListener { snapshot, e ->
+            if (e != null){
+                return@addSnapshotListener
+            }
+            if (snapshot != null && snapshot.exists()){
+                moneyAccountArray[0] = snapshot["Money"].toString()
+            }
+            accountAdapter?.notifyDataSetChanged()
         }
     }
 

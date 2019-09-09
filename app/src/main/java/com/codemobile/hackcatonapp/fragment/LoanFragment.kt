@@ -22,6 +22,7 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.FieldPosition
 
 class LoanFragment : Fragment() {
 
@@ -113,15 +114,18 @@ class LoanFragment : Fragment() {
                 loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lenderName").toString()
             }
 //            queryLenderName()
-            checkGetLoan()
+            checkGetLoan(0)
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
         }
     }
 
-    private fun checkGetLoan() {
+    private fun checkGetLoan(position: Int) {
         if (loaningArrayList.isNotEmpty()) {
             btn_toLoadlist?.text = "Cancel"
+            if (loaningArrayList[position].status && loaningArrayList[position].userGet[0]== USER_ID_LOANER){
+                btn_toLoadlist?.visibility = View.GONE
+            }
         }
     }
 

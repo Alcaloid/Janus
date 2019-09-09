@@ -72,12 +72,12 @@ class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, v
     private fun setCardPayment(holder: LoanerHolder, position: Int) {
         val formatter = DecimalFormat("#,###,###.##")
         val money = formatter.format(dataArrayList[position].limit)
-        holder.pay_amount.text = money
-        holder.pay_interest.text = dataArrayList[position].interest.toString()
+        holder.pay_amount.text = "${money}฿"
+        holder.pay_interest.text = "interest:${dataArrayList[position].interest.toString()}%"
         holder.pay_status.text = "Approve"
         holder.pay_status.setTextColor(Color.GREEN)
-        holder.pay_duedate.text = dataArrayList[position].period
-        holder.pay_total.text = getTotalPayment(position)
+        holder.pay_duedate.text = "Due Date:${dataArrayList[position].period}"
+        holder.pay_total.text = "Total:${getTotalPayment(position)}"
         holder.pay_button.setOnClickListener {
             println("Pay!!!")
         }

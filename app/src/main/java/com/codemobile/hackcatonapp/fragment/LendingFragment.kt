@@ -31,7 +31,7 @@ class LendingFragment : Fragment() {
     lateinit var UserRef:CollectionReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(com.codemobile.hackcatonapp.R.layout.fragment_lend, container, false)
+        return inflater.inflate(R.layout.fragment_lend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

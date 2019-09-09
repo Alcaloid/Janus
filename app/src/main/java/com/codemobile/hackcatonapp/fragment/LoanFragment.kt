@@ -52,7 +52,7 @@ class LoanFragment : Fragment() {
     }
 
     private fun setLoan(_view: View) {
-        loaningAdapter = LoanerAdapter(loaningArrayList, 1, object : QueryUser {
+        loaningAdapter = LoanerAdapter(context!!, loaningArrayList, 1, object : QueryUser {
             override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }

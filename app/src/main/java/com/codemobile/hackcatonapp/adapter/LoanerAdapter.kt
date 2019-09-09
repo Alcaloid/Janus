@@ -1,5 +1,7 @@
 package com.codemobile.hackcatonapp.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.VIEW_CARD_LENDER
 import com.codemobile.hackcatonapp.VIEW_CARD__LENDER_APPROVE
+import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import java.text.DecimalFormat
 
 
-class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :
+class LoanerAdapter(private val context: Context, val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var txt_color: Int = Color.RED
@@ -80,6 +83,8 @@ class LoanerAdapter(val dataArrayList: ArrayList<LendingModel>, val role: Int, v
         holder.pay_total.text = "Total: ${getTotalPayment(position)}"
         holder.pay_button.setOnClickListener {
             println("Pay!!!")
+            val intent = Intent(context, PaymentActivity::class.java)
+            context.startActivity(intent)
         }
     }
 

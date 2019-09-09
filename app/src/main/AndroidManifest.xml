@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
           package="com.codemobile.hackcatonapp">
 
     <application
@@ -14,6 +15,17 @@
         <activity android:name=".lendingactivity.AddLendingActivity">
         </activity>
         <activity android:name=".activity.LoanDetailActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data
+                        android:scheme="https"
+                        android:host="easy-loan.com"
+                        android:pathPrefix="/loan"/>
+            </intent-filter>
         </activity>
         <activity android:name=".activity.LoanListActivity">
         </activity>

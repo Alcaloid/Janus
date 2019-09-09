@@ -95,7 +95,6 @@
 
                 <ImageView
                         android:scaleType="fitCenter"
-                        android:layout_marginTop="70dp"
                         android:foregroundGravity="center"
                         android:id="@+id/image_notLeanding"
                         android:layout_centerVertical="true"
@@ -116,7 +115,6 @@
                         android:layout_centerHorizontal="true"
                         android:text="No Lending"
                         android:visibility="visible"
-                        android:layout_marginBottom="70dp"
                         android:id="@+id/txt_notLeanding"/>
             </RelativeLayout>
 

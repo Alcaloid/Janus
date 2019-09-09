@@ -59,6 +59,7 @@ class AddLendingActivity : AppCompatActivity() {
         val id = LeandingRef.document().getId()
         hashMap = hashMapOf(
             "lender" to USER_ID_LENDER,
+            "lenderName" to "Shiota Nagisa",
             "limit" to userDataSet.limit,
             "interest" to userDataSet.interest,
             "period" to userDataSet.period,

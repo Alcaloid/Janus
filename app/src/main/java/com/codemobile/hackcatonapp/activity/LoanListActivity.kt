@@ -59,10 +59,12 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
                     val lendingData = document.toObject(LendingModel::class.java)
                     if(lendingData.id != USER_ID_LOANER){
                         lenderArray.add(lendingData)
-                        lenderArray[lenderArray.lastIndex].lenderName = document.get("lender").toString()
+                        lenderArray[lenderArray.lastIndex].lenderName = document.get("lenderName").toString()
+                        lenderArray[lenderArray.lastIndex].id = document.id
                     }
                 }
-                queryLenderName()
+                loanListAdaptor?.submitList(lenderArray)
+//                queryLenderName()
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Fail to read data", Toast.LENGTH_SHORT).show()

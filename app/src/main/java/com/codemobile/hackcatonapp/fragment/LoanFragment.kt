@@ -86,9 +86,9 @@ class LoanFragment : Fragment() {
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
                 loaningArrayList.add(result)
-                loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lender").toString()
+                loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lenderName").toString()
             }
-            queryLenderName()
+//            queryLenderName()
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
         }

@@ -13,14 +13,16 @@ interface ApiInterface {
 //https://api.partners.scb/partners/sandbox/v2/deeplink/transactions
 //    requestUId, resourceOwnerId
 //    @Header("requestUId : b0ea1f3f-e41d-4727-a078-47b15e9bd0ef", "resourceOwnerId : l7403bd3fce86f451eb386765a781091ec")
-    @POST("/v1/oauth/token")
-    fun accessToken(): Call<Token>
-
-    @POST("/v2/deeplink/transactions")
-    fun getImage():Call<Payment>
+//    @POST("/v1/oauth/token")
+//    fun accessToken(): Call<Token>
+//
+//    @POST("/v2/deeplink/transactions")
+//    fun getImage():Call<Payment>
+    @GET("/easyloan/getLoan")
+    fun getLoan(): Call<List<APILoan>>
 
     companion object Factory {
-        private const val BASE_URL = "https://api.partners.scb/partners/sandbox/"
+        private const val BASE_URL = "http://192.168.101.177:4567/"
         private var retrofit: Retrofit? = null
         fun getClient(): ApiInterface {
             if (retrofit == null) {

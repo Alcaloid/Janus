@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.codemobile.hackcatonapp.R
+import com.codemobile.hackcatonapp.model.APILoan
 import com.codemobile.hackcatonapp.model.ApiInterface
 import com.codemobile.hackcatonapp.model.Token
 import retrofit2.Call
@@ -19,15 +20,15 @@ class PaymentActivity : AppCompatActivity() {
 
     fun getApiMobileList() {
 
-        val call = ApiInterface.getClient().accessToken()
+        val call = ApiInterface.getClient().getLoan()
         call.enqueue(
-            object : Callback<Token> {
-                override fun onFailure(call: Call<Token>, t: Throwable) {
+            object : Callback<List<APILoan>> {
+                override fun onFailure(call: Call<List<APILoan>>, t: Throwable) {
                     Log.d("getApi-e", t.message.toString())
 
                 }
 
-                override fun onResponse(call: Call<Token>, response: Response<Token>) {
+                override fun onResponse(call: Call<List<APILoan>>, response: Response<List<APILoan>>) {
                     Log.d("getApi", response.toString())
                     if (response.isSuccessful) {
 

@@ -103,7 +103,7 @@
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:src="@drawable/ic_nolending"
-                        android:visibility="visible"/>
+                        android:visibility="gone"/>
 
                 <TextView
                         android:layout_marginTop="0dp"
@@ -115,7 +115,7 @@
                         android:textColor="@color/colorNoL"
                         android:layout_centerHorizontal="true"
                         android:text="No Lending"
-                        android:visibility="visible"
+                        android:visibility="gone"
                         android:layout_marginBottom="70dp"
                         android:id="@+id/txt_notLeanding"/>
             </RelativeLayout>

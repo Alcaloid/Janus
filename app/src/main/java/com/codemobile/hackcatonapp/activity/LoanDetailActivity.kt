@@ -42,8 +42,9 @@ class LoanDetailActivity : AppCompatActivity() {
     }
 
     private fun updateUserGet(id:String) {
-        FirebaseFirestore.getInstance().collection(LENDER_DATABASE).document(id).update("UserLeander", FieldValue.arrayUnion(
+        FirebaseFirestore.getInstance().collection(LENDER_DATABASE).document(id).update("userGet", FieldValue.arrayUnion(
             USER_ID_LOANER))
+        finish()
     }
 
 }

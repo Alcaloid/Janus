@@ -95,6 +95,7 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
         val intent = Intent(this, LoanDetailActivity::class.java)
         intent.putExtra("Loan", loan)
         startActivity(intent)
+        finish()
     }
 
 }

@@ -20,6 +20,7 @@ import com.codemobile.hackcatonapp.adapter.LeandingAdapter
 import com.codemobile.hackcatonapp.interfaces.QueryUser
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 class LoanFragment : Fragment() {
@@ -62,13 +63,29 @@ class LoanFragment : Fragment() {
 
     private fun setOnAddLoaning() {
         btn_toLoadlist.setOnClickListener {
-            val intent = Intent(context, LoanListActivity::class.java)
-            startActivity(intent)
+            checkUserSendLoan()
         }
         btnPayment.setOnClickListener {
             val intent = Intent(context, PaymentActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun checkUserSendLoan() {
+        if (loaningArrayList.isEmpty()){
+            val intent = Intent(context, LoanListActivity::class.java)
+            startActivity(intent)
+        }else{
+            deleteUserLoan()
+        }
+    }
+
+    private fun deleteUserLoan() {
+        var hashMap:HashMap<String,Any> = HashMap()
+        hashMap["userGet.${com.codemobile.hackcatonapp.USER_ID_LOANER}"] = FieldValue.delete()
+        btn_toLoadlist.text = "Loan"
+//        LeandingRef.document(loaningArrayList)
+
     }
 
     private fun checkUserLoan() {
@@ -83,19 +100,27 @@ class LoanFragment : Fragment() {
 
     fun notificationLoanOfUser() {
         //this notification all of them!!
-        loaningArrayList.clear()
         LeandingRef.whereArrayContains("userGet", USER_ID_LOANER).addSnapshotListener { querySnapshot, e ->
             if (e != null) {
                 return@addSnapshotListener
             }
+            loaningArrayList.clear()
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
                 loaningArrayList.add(result)
+                loaningArrayList[loaningArrayList.lastIndex].id = it.id
                 loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lenderName").toString()
             }
 //            queryLenderName()
+            checkGetLoan()
             checkUserLoan()
             loaningAdapter?.notifyDataSetChanged()
+        }
+    }
+
+    private fun checkGetLoan() {
+        if (loaningArrayList.isNotEmpty()){
+            btn_toLoadlist.text = "Cancel"
         }
     }
 

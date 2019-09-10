@@ -3,6 +3,8 @@ package com.codemobile.hackcatonapp.adapter
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +25,8 @@ class LoanerAdapter(
     val queryUser: QueryUser
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    private var deeplink: String = "scbeasysim://billpayment-anonymous/944c0a58-0294-4c72-a10d-8a5981bb1efe"
+    private var callbackURL: String = "?callback_url=https://easy-loan.com/loan"
 
     var txt_color: Int = Color.RED
     var statusText: String = "Waiting"
@@ -87,11 +91,13 @@ class LoanerAdapter(
         holder.pay_duedate.text = "Due Date: ${dataArrayList[position].period}"
         holder.pay_total.text = "Total: ${getTotalPayment(position)}"
         holder.pay_button.setOnClickListener {
-            val intent = Intent(context, PaymentActivity::class.java)
-            context.startActivity(intent)
             if (dataArrayList[position].lender != null) {
                 queryUser.queryUserData(arrayListOf(dataArrayList[position].lender!!), dataArrayList[position].id)
             }
+            val uri = Uri.parse(deeplink+callbackURL)
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            Log.d("deeplink-loan", uri.toString())
+            context.startActivity(intent)
         }
     }
 

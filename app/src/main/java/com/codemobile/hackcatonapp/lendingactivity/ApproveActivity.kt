@@ -1,11 +1,11 @@
 package com.codemobile.hackcatonapp.lendingactivity
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.activity.PaymentActivity
@@ -21,12 +21,10 @@ import kotlinx.android.synthetic.main.activity_approve.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.POST
-
 
 class ApproveActivity : AppCompatActivity() {
-
-
+    private var deeplink: String = "scbeasysim://billpayment-anonymous/1f190d1c-c597-43c6-8065-c7469e66ce6a"
+    private var callbackURL: String = "?callback_url=https://easy-loan.com/loan"
     lateinit var database: FirebaseFirestore
     lateinit var userRef: CollectionReference
     lateinit var LeandingRef: CollectionReference
@@ -58,7 +56,7 @@ class ApproveActivity : AppCompatActivity() {
                 limitMoney = document["limit"].toString().toInt()
                 calculateMoney()
                 updateUserLoaner(id)
-                queryLenderData()
+//                queryLenderData()
 
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
@@ -91,7 +89,10 @@ class ApproveActivity : AppCompatActivity() {
             override fun updateLending(idUser: String) {
                 updateLending(idUser, lending_ID)
                 queryMoneyOfLender(idUser)
-
+                val uri = Uri.parse(deeplink+callbackURL)
+                val intent = Intent(Intent.ACTION_VIEW, uri)
+                Log.d("deeplink-approve", uri.toString())
+                startActivity(intent)
             }
 
         })
@@ -109,7 +110,7 @@ class ApproveActivity : AppCompatActivity() {
                 val lender_accountTo = result?.accountTo
                 val lender_authorization = result?.authorization
                 val lender_resourceOwnerId = result?.resourceOwnerId
-                setMobile(lender_accountTo,lender_authorization,lender_resourceOwnerId)
+                setMobile(lender_accountTo, lender_authorization, lender_resourceOwnerId)
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
             }
@@ -118,25 +119,26 @@ class ApproveActivity : AppCompatActivity() {
     }
 
     private fun setMobile(account: String?, auth: String?, res: String?) {
-        val json : JsonObject = JsonObject()
-        json.addProperty("accountTo",account)
-        json.addProperty("authorization",auth)
-        json.addProperty("resourceOwnerId",res)
-        json.addProperty("paymentAmount",limitMoney)
+        val json: JsonObject = JsonObject()
+        json.addProperty("accountTo", account)
+        json.addProperty("authorization", auth)
+        json.addProperty("resourceOwnerId", res)
+        json.addProperty("paymentAmount", limitMoney)
         val call = ApiInterface.getClient().accessToken(json)
-        call.enqueue(object : Callback<JsonObject>{
+        call.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                println("Fail to Post data"+t)
+                println("Fail to Post data" + t)
             }
 
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                println("Arkkkk~~~~"+response)
-                if (response.isSuccessful){
-                    println("Response:"+response.body()!!.get("deeplink_url"))
+                println("deeplink-approve"+response)
+                if (response.isSuccessful) {
+                    println("Response:" + response.body()!!.get("deeplink_url"))
                     val deeplink = response.body()!!.get("deeplink_url").asString
-                    Log.d("deeplink", deeplink)
-                    val intent = Intent(this@ApproveActivity, PaymentActivity::class.java)
-                    intent.putExtra(DEEPLINK, deeplink)
+                    Log.d("deeplink-approve", deeplink)
+                    val uri = Uri.parse(deeplink+"?callback_url=https://easy-loan.com/loan")
+                    val intent = Intent(Intent.ACTION_VIEW, uri)
+                    Log.d("deeplink-approve", uri.toString())
                     startActivity(intent)
                 }
             }

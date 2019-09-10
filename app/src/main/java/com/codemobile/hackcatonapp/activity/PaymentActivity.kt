@@ -15,11 +15,11 @@ class PaymentActivity : AppCompatActivity() {
     private var callbackURL: String = "?callback_url=https://easy-loan.com/loan"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        deeplink = intent.getStringExtra(DEEPLINK) as String
-        val uri = Uri.parse(deeplink+callbackURL)
-        val intent = Intent(Intent.ACTION_VIEW, uri)
-        Log.d("deeplink-status", uri.toString())
-        startActivity(intent)
+//        deeplink = intent.getStringExtra(DEEPLINK) as String
+//        val uri = Uri.parse(deeplink+"?callback_url=https://easy-loan.com/loan")
+//        val intent = Intent(Intent.ACTION_VIEW, uri)
+//        Log.d("deeplink-status", uri.toString())
+//        startActivity(intent)
 
 
     }

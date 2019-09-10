@@ -2,25 +2,29 @@ package com.codemobile.hackcatonapp.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codemobile.hackcatonapp.LENDER_DATABASE
+import com.codemobile.hackcatonapp.*
 import kotlinx.android.synthetic.main.fragment_loan.*
-import com.codemobile.hackcatonapp.R
-import com.codemobile.hackcatonapp.USER_DATABASE
-import com.codemobile.hackcatonapp.USER_ID_LOANER
 import com.codemobile.hackcatonapp.activity.LoanListActivity
+import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.adapter.AccountAdapter
 import com.codemobile.hackcatonapp.adapter.LoanerAdapter
 import com.codemobile.hackcatonapp.interfaces.QueryUser
+import com.codemobile.hackcatonapp.model.ApiInterface
 import com.codemobile.hackcatonapp.model.LendingModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.JsonObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoanFragment : Fragment() {
 
@@ -30,8 +34,7 @@ class LoanFragment : Fragment() {
     private var loaningAdapter: LoanerAdapter? = null
     private var accountAdapter: AccountAdapter? = null
     private var payment_amount: Int? = null
-    private var loanerAuthorization: String? = null
-    private var loanerResourceOwnerId: String? = null
+    private var json:JsonObject = JsonObject()
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
@@ -59,6 +62,7 @@ class LoanFragment : Fragment() {
                 getLenderMoney(userArrayList[0])
                 deleteUserGet(id)
                 checkUserLoan()
+//                setDataTransaction()
             }
 
         })
@@ -149,6 +153,31 @@ class LoanFragment : Fragment() {
         }
     }
 
+    private fun setDataTransaction() {
+        json.addProperty("paymentAmount", payment_amount)
+        println("Json:"+json)
+        val call = ApiInterface.getClient().accessToken(json)
+        call.enqueue(object : Callback<JsonObject> {
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                println("Fail to Post data" + t)
+            }
+
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                println("deeplink-loan" + response)
+                if (response.isSuccessful) {
+                    println("Response:" + response.body()!!.get("deeplink_url"))
+                    val deeplink = response.body()!!.get("deeplink_url").asString
+//                    Log.d("deeplink", deeplink)
+//                    val intent = Intent(context, PaymentActivity::class.java)
+//                    intent.putExtra(DEEPLINK, deeplink)
+//                    startActivity(intent)
+                }
+            }
+
+        })
+
+    }
+
     private fun getTotalPayment(limit: Int, interest: Int): Int? {
         return (limit + (limit * interest) / 100)
     }
@@ -162,7 +191,9 @@ class LoanFragment : Fragment() {
             if (snapshot != null && snapshot.exists()) {
                 //data loaner
                 moneyAccountArray[0] = snapshot["Money"].toString()
-
+                json.addProperty("accountTo",snapshot["accountTo"].toString())
+                json.addProperty("authorization",snapshot["authorization"].toString())
+                json.addProperty("resourceOwnerId",snapshot["resourceOwnerId"].toString())
             }
             accountAdapter?.notifyDataSetChanged()
         }

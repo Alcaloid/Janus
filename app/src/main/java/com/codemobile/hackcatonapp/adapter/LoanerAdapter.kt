@@ -16,7 +16,12 @@ import com.codemobile.hackcatonapp.model.LendingModel
 import java.text.DecimalFormat
 
 
-class LoanerAdapter(private val context: Context, val dataArrayList: ArrayList<LendingModel>, val role: Int, val queryUser: QueryUser) :
+class LoanerAdapter(
+    private val context: Context,
+    val dataArrayList: ArrayList<LendingModel>,
+    val role: Int,
+    val queryUser: QueryUser
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var txt_color: Int = Color.RED
@@ -84,8 +89,8 @@ class LoanerAdapter(private val context: Context, val dataArrayList: ArrayList<L
         holder.pay_button.setOnClickListener {
             val intent = Intent(context, PaymentActivity::class.java)
             context.startActivity(intent)
-            if (dataArrayList[position].lender!=null){
-                queryUser.queryUserData(arrayListOf(dataArrayList[position].lender!!),dataArrayList[position].id)
+            if (dataArrayList[position].lender != null) {
+                queryUser.queryUserData(arrayListOf(dataArrayList[position].lender!!), dataArrayList[position].id)
             }
         }
     }
@@ -93,7 +98,7 @@ class LoanerAdapter(private val context: Context, val dataArrayList: ArrayList<L
     private fun getTotalPayment(position: Int): String {
         val principleMoney = dataArrayList[position].limit as Int
         val interest = dataArrayList[position].interest as Int
-        return (principleMoney + (principleMoney * interest)/100).toString()
+        return (principleMoney + (principleMoney * interest) / 100).toString()
     }
 
     private fun setCardNotApprove(holder: LeandingHolder, position: Int) {

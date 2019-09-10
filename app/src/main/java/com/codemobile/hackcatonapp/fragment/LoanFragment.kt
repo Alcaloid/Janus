@@ -29,9 +29,9 @@ class LoanFragment : Fragment() {
 
     private var loaningAdapter: LoanerAdapter? = null
     private var accountAdapter: AccountAdapter? = null
-    private var payment_amount:Int? =null
-    private var loanerAuthorization : String? = null
-    private var loanerResourceOwnerId:String? = null
+    private var payment_amount: Int? = null
+    private var loanerAuthorization: String? = null
+    private var loanerResourceOwnerId: String? = null
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
@@ -69,28 +69,28 @@ class LoanFragment : Fragment() {
     }
 
     private fun deleteUserGet(id: String?) {
-        id?.let { LeandingRef.document(it).update("userGet",FieldValue.arrayRemove(USER_ID_LOANER)) }
+        id?.let { LeandingRef.document(it).update("userGet", FieldValue.arrayRemove(USER_ID_LOANER)) }
     }
 
     private fun getLenderMoney(id: String?) {
         id?.let {
-            UserRef.document(it).get().addOnSuccessListener {doc->
-                if (doc != null && payment_amount != null){
+            UserRef.document(it).get().addOnSuccessListener { doc ->
+                if (doc != null && payment_amount != null) {
                     val lenderMoney = doc["Money"]
                     val lenderBalance = lenderMoney.toString().toInt() + payment_amount!!
-                    updateLenderMoney(lenderBalance,id)
+                    updateLenderMoney(lenderBalance, id)
                 }
             }
         }
     }
 
-    private fun updateLenderMoney(money: Int,id: String?) {
-        id?.let { UserRef.document(it).update("Money",money) }
+    private fun updateLenderMoney(money: Int, id: String?) {
+        id?.let { UserRef.document(it).update("Money", money) }
     }
 
     private fun updateLoanerMoney() {
-        val loanerMoney:Int = moneyAccountArray[0].toInt() - payment_amount as Int
-        UserRef.document(USER_ID_LOANER).update("Money",loanerMoney)
+        val loanerMoney: Int = moneyAccountArray[0].toInt() - payment_amount as Int
+        UserRef.document(USER_ID_LOANER).update("Money", loanerMoney)
     }
 
     private fun setOnAddLoaning() {
@@ -139,7 +139,7 @@ class LoanFragment : Fragment() {
             querySnapshot?.forEach {
                 val result = it.toObject(LendingModel::class.java)
                 loaningArrayList.add(result)
-                payment_amount = getTotalPayment(result.limit as Int,result.interest as Int)
+                payment_amount = getTotalPayment(result.limit as Int, result.interest as Int)
                 loaningArrayList[loaningArrayList.lastIndex].id = it.id
                 loaningArrayList[loaningArrayList.lastIndex].lenderName = it.get("lenderName").toString()
             }
@@ -150,16 +150,16 @@ class LoanFragment : Fragment() {
     }
 
     private fun getTotalPayment(limit: Int, interest: Int): Int? {
-        return (limit + (limit * interest)/100)
+        return (limit + (limit * interest) / 100)
     }
 
-    fun notificationUserMoney(){
+    fun notificationUserMoney() {
         //notification money of user
         UserRef.document(USER_ID_LOANER).addSnapshotListener { snapshot, e ->
-            if (e != null){
+            if (e != null) {
                 return@addSnapshotListener
             }
-            if (snapshot != null && snapshot.exists()){
+            if (snapshot != null && snapshot.exists()) {
                 //data loaner
                 moneyAccountArray[0] = snapshot["Money"].toString()
 
@@ -171,7 +171,7 @@ class LoanFragment : Fragment() {
     private fun checkGetLoan(position: Int) {
         if (loaningArrayList.isNotEmpty()) {
             btn_toLoadlist?.text = "Cancel"
-            if (loaningArrayList[position].status && loaningArrayList[position].userGet[0]== USER_ID_LOANER){
+            if (loaningArrayList[position].status && loaningArrayList[position].userGet[0] == USER_ID_LOANER) {
                 btn_toLoadlist?.visibility = View.GONE
             }
         }

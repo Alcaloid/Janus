@@ -27,7 +27,7 @@ class LoanDetailActivity : AppCompatActivity() {
         val limit = formatter.format(loan.limit)
         limitLoan.text = getString(R.string.loan_list_limit, limit)
         interestLoan.text = getString(R.string.laon_list_interest, loan.interest)
-        periodLoan.text = "Period: ${loan.period} month"//getString(R.string.loan_list_period, loan.period)
+        periodLoan.text = "Period: ${loan.period}"//getString(R.string.loan_list_period, loan.period)
         lonerName.text = loan.lenderName
 
         submitLoanBtn.setOnClickListener {
@@ -41,9 +41,12 @@ class LoanDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun updateUserGet(id:String) {
-        FirebaseFirestore.getInstance().collection(LENDER_DATABASE).document(id).update("userGet", FieldValue.arrayUnion(
-            USER_ID_LOANER))
+    private fun updateUserGet(id: String) {
+        FirebaseFirestore.getInstance().collection(LENDER_DATABASE).document(id).update(
+            "userGet", FieldValue.arrayUnion(
+                USER_ID_LOANER
+            )
+        )
         finish()
     }
 

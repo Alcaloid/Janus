@@ -14,6 +14,6 @@ class PaymentActivity : AppCompatActivity() {
         val uri = Uri.parse(deeplink + callbackURL)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         Log.d("status-s", uri.toString())
-        startActivity(intent)
+//        startActivity(intent)
     }
 }

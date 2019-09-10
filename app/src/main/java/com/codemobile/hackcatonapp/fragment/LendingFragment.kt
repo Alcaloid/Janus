@@ -28,7 +28,7 @@ class LendingFragment : Fragment() {
 
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
-    lateinit var UserRef:CollectionReference
+    lateinit var UserRef: CollectionReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_lend, container, false)
@@ -46,11 +46,11 @@ class LendingFragment : Fragment() {
 
     private fun setLending(_view: View) {
         leandingAdapter =
-            LeandingAdapter(lendingArrayList,0, object : QueryUser {
+            LeandingAdapter(lendingArrayList, 0, object : QueryUser {
                 override fun queryUserData(userArrayList: ArrayList<String>, id: String?) {
                     val intent: Intent = Intent(context, ApproveActivity::class.java)
                     intent.putExtra(USER_LIST, userArrayList)
-                    intent.putExtra(LENDER_MONEY,moneyAccountArray[0])
+                    intent.putExtra(LENDER_MONEY, moneyAccountArray[0])
                     intent.putExtra(LENDING_ID, id)
                     startActivity(intent)
                 }
@@ -99,13 +99,13 @@ class LendingFragment : Fragment() {
         }
     }
 
-    fun notificationUserMoney(){
+    fun notificationUserMoney() {
         //notification money of user
         UserRef.document(USER_ID_LENDER).addSnapshotListener { snapshot, e ->
-            if (e != null){
+            if (e != null) {
                 return@addSnapshotListener
             }
-            if (snapshot != null && snapshot.exists()){
+            if (snapshot != null && snapshot.exists()) {
                 moneyAccountArray[0] = snapshot["Money"].toString()
             }
             accountAdapter?.notifyDataSetChanged()

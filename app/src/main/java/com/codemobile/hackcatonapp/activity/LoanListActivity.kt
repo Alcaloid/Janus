@@ -16,7 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_loan_list.*
 
 
-
 class LoanListActivity() : AppCompatActivity(), OnLoanClick {
     lateinit var database: FirebaseFirestore
     lateinit var LeandingRef: CollectionReference
@@ -39,8 +38,8 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
     }
 
     private fun queryLenderName() {
-        for (i in 0 until lenderArray.size-1) {
-            getLenderName(lenderArray[i].lenderName.toString(),i)
+        for (i in 0 until lenderArray.size - 1) {
+            getLenderName(lenderArray[i].lenderName.toString(), i)
         }
         loanListAdaptor?.submitList(lenderArray)
     }
@@ -57,7 +56,7 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val lendingData = document.toObject(LendingModel::class.java)
-                    if(lendingData.id != USER_ID_LOANER && !lendingData.status){
+                    if (lendingData.id != USER_ID_LOANER && !lendingData.status) {
                         lenderArray.add(lendingData)
                         lenderArray[lenderArray.lastIndex].lenderName = document.get("lenderName").toString()
                         lenderArray[lenderArray.lastIndex].id = document.id
@@ -71,7 +70,7 @@ class LoanListActivity() : AppCompatActivity(), OnLoanClick {
             }
     }
 
-    private fun getLenderName(id: String,index:Int){
+    private fun getLenderName(id: String, index: Int) {
         UserRef.document(id).get()
             .addOnSuccessListener { result ->
                 val lenderName = result.get("Name")

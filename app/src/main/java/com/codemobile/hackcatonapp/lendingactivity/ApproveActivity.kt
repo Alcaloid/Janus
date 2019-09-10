@@ -2,15 +2,24 @@ package com.codemobile.hackcatonapp.lendingactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.adapter.NeedApproveAdapter
 import com.codemobile.hackcatonapp.interfaces.UpdateApprove
+import com.codemobile.hackcatonapp.model.ApiInterface
 import com.codemobile.hackcatonapp.model.UserModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_approve.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.POST
+
 
 class ApproveActivity : AppCompatActivity() {
 
@@ -41,12 +50,13 @@ class ApproveActivity : AppCompatActivity() {
         }
     }
 
-    private fun queryMoneyOfLender(id:String) {
+    private fun queryMoneyOfLender(id: String) {
         LeandingRef.document(lending_ID).get().addOnSuccessListener { document ->
             if (document != null) {
                 limitMoney = document["limit"].toString().toInt()
                 calculateMoney()
                 updateUserLoaner(id)
+                queryLenderData()
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
             }
@@ -78,7 +88,6 @@ class ApproveActivity : AppCompatActivity() {
             override fun updateLending(idUser: String) {
                 updateLending(idUser, lending_ID)
                 queryMoneyOfLender(idUser)
-//                updateUserLoaner(idUser)
             }
 
         })
@@ -88,15 +97,43 @@ class ApproveActivity : AppCompatActivity() {
         }
     }
 
-    fun queryLenderData(){
-        userRef.document(USER_ID_LENDER).get().addOnSuccessListener {document ->
+    fun queryLenderData() {
+        userRef.document(USER_ID_LENDER).get().addOnSuccessListener { document ->
             if (document != null) {
+                val result = document.toObject(UserModel::class.java)
                 //data lender
+                val lender_accountTo = result?.accountTo
+                val lender_authorization = result?.authorization
+                val lender_resourceOwnerId = result?.resourceOwnerId
+                setMobile(lender_accountTo,lender_authorization,lender_resourceOwnerId)
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
             }
 
         }
+    }
+
+    private fun setMobile(account: String?, auth: String?, res: String?) {
+        val json : JsonObject = JsonObject()
+        json.addProperty("accountTo",account)
+        json.addProperty("authorization",auth)
+        json.addProperty("resourceOwnerId",res)
+        json.addProperty("paymentAmount","3000")
+        val call = ApiInterface.getClient().accessToken(json)
+        call.enqueue(object : Callback<JsonObject>{
+            override fun onFailure(call: Call<JsonObject>, t: Throwable) {
+                println("Fail to Post data"+t)
+            }
+
+            override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
+                println("Arkkkk~~~~"+response)
+                if (response.isSuccessful){
+                    println("Response:"+response)
+                }
+            }
+
+        })
+
     }
 
     private fun updateUserLoaner(id: String) {

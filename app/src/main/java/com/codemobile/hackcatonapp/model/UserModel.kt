@@ -8,5 +8,9 @@ data class UserModel(
     val Company: String? = null,
     val Address: String? = null,
     val LoanRepaymentHistory: String? = null,
-    val SourceIncome: String? = null
+    val SourceIncome: String? = null,
+    val accountTo:String?=null,
+    val authorization:String?=null,
+    val resourceOwnerId:String?=null,
+    val paymentAmount: String?=null
 )

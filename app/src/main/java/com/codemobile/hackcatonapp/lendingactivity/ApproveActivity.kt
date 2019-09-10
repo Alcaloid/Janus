@@ -128,7 +128,7 @@ class ApproveActivity : AppCompatActivity() {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 println("Arkkkk~~~~"+response)
                 if (response.isSuccessful){
-                    println("Response:"+response)
+                    println("Response:"+response.body()!!.get("deeplink_url"))
                 }
             }
 

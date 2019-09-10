@@ -23,7 +23,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ApproveActivity : AppCompatActivity() {
-    private var deeplink: String = "scbeasysim://billpayment-anonymous/1f190d1c-c597-43c6-8065-c7469e66ce6a"
+    private var deeplink: String = "scbeasysim://billpayment-anonymous/5dd4e345-1c88-4109-bf24-9c540e173b0d"
     private var callbackURL: String = "?callback_url=https://easy-loan.com/loan"
     lateinit var database: FirebaseFirestore
     lateinit var userRef: CollectionReference

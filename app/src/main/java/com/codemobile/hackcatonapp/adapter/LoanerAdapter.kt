@@ -25,7 +25,7 @@ class LoanerAdapter(
     val queryUser: QueryUser
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var deeplink: String = "scbeasysim://billpayment-anonymous/944c0a58-0294-4c72-a10d-8a5981bb1efe"
+    private var deeplink: String = "scbeasysim://billpayment-anonymous/2af724a9-de99-4dba-adee-f0565140b1d3"
     private var callbackURL: String = "?callback_url=https://easy-loan.com/loan"
 
     var txt_color: Int = Color.RED

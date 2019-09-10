@@ -42,7 +42,6 @@ class ApproveActivity : AppCompatActivity() {
 
         setupFirebase()
         init()
-        queryLenderData()
         queryUserInformation(userArray)
 
         btn_backFromApprove.setOnClickListener {

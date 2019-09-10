@@ -36,7 +36,8 @@
                         android:pathPrefix="/loan"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PaymentActivity"/>
+        <activity android:name=".activity.PaymentActivity">
+        </activity>
 
     </application>
 

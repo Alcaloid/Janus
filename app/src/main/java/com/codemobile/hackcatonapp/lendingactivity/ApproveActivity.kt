@@ -1,5 +1,6 @@
 package com.codemobile.hackcatonapp.lendingactivity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,12 +8,14 @@ import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.*
+import com.codemobile.hackcatonapp.activity.PaymentActivity
 import com.codemobile.hackcatonapp.adapter.NeedApproveAdapter
 import com.codemobile.hackcatonapp.interfaces.UpdateApprove
 import com.codemobile.hackcatonapp.model.ApiInterface
 import com.codemobile.hackcatonapp.model.UserModel
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_approve.*
 import retrofit2.Call
@@ -56,6 +59,7 @@ class ApproveActivity : AppCompatActivity() {
                 calculateMoney()
                 updateUserLoaner(id)
                 queryLenderData()
+
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
             }
@@ -87,6 +91,7 @@ class ApproveActivity : AppCompatActivity() {
             override fun updateLending(idUser: String) {
                 updateLending(idUser, lending_ID)
                 queryMoneyOfLender(idUser)
+
             }
 
         })
@@ -128,11 +133,15 @@ class ApproveActivity : AppCompatActivity() {
                 println("Arkkkk~~~~"+response)
                 if (response.isSuccessful){
                     println("Response:"+response.body()!!.get("deeplink_url"))
+                    val deeplink = response.body()!!.get("deeplink_url").asString
+                    Log.d("deeplink", deeplink)
+                    val intent = Intent(this@ApproveActivity, PaymentActivity::class.java)
+                    intent.putExtra(DEEPLINK, deeplink)
+                    startActivity(intent)
                 }
             }
 
         })
-
     }
 
     private fun updateUserLoaner(id: String) {

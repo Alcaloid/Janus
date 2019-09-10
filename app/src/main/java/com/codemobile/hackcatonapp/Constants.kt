@@ -14,4 +14,5 @@ const val VIEW_CARD_LENDER = 0
 const val VIEW_CARD__LENDER_APPROVE = 1
 
 const val DONTHAVEMONEY = "cant_add_lending"
+const val DEEPLINK = "deeplink"
 

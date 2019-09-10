@@ -117,7 +117,7 @@ class ApproveActivity : AppCompatActivity() {
         json.addProperty("accountTo",account)
         json.addProperty("authorization",auth)
         json.addProperty("resourceOwnerId",res)
-        json.addProperty("paymentAmount","3000")
+        json.addProperty("paymentAmount",limitMoney)
         val call = ApiInterface.getClient().accessToken(json)
         call.enqueue(object : Callback<JsonObject>{
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {

@@ -2,9 +2,7 @@ package com.codemobile.hackcatonapp.lendingactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codemobile.hackcatonapp.*
 import com.codemobile.hackcatonapp.adapter.NeedApproveAdapter
@@ -18,8 +16,6 @@ import kotlinx.android.synthetic.main.activity_approve.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.POST
-
 
 class ApproveActivity : AppCompatActivity() {
 
@@ -104,7 +100,7 @@ class ApproveActivity : AppCompatActivity() {
                 val lender_accountTo = result?.accountTo
                 val lender_authorization = result?.authorization
                 val lender_resourceOwnerId = result?.resourceOwnerId
-                setMobile(lender_accountTo,lender_authorization,lender_resourceOwnerId)
+                setMobile(lender_accountTo, lender_authorization, lender_resourceOwnerId)
             } else {
                 Toast.makeText(this, "Fail to get data", Toast.LENGTH_SHORT).show()
             }
@@ -113,21 +109,21 @@ class ApproveActivity : AppCompatActivity() {
     }
 
     private fun setMobile(account: String?, auth: String?, res: String?) {
-        val json : JsonObject = JsonObject()
-        json.addProperty("accountTo",account)
-        json.addProperty("authorization",auth)
-        json.addProperty("resourceOwnerId",res)
-        json.addProperty("paymentAmount",limitMoney)
+        val json: JsonObject = JsonObject()
+        json.addProperty("accountTo", account)
+        json.addProperty("authorization", auth)
+        json.addProperty("resourceOwnerId", res)
+        json.addProperty("paymentAmount", limitMoney)
         val call = ApiInterface.getClient().accessToken(json)
-        call.enqueue(object : Callback<JsonObject>{
+        call.enqueue(object : Callback<JsonObject> {
             override fun onFailure(call: Call<JsonObject>, t: Throwable) {
-                println("Fail to Post data"+t)
+                println("Fail to Post data" + t)
             }
 
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
-                println("Arkkkk~~~~"+response)
-                if (response.isSuccessful){
-                    println("Response:"+response.body()!!.get("deeplink_url"))
+                println("Arkkkk~~~~" + response)
+                if (response.isSuccessful) {
+                    println("Response:" + response.body()!!.get("deeplink_url"))
                 }
             }
 

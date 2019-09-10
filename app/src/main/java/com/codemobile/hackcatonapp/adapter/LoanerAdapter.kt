@@ -87,11 +87,11 @@ class LoanerAdapter(
         holder.pay_duedate.text = "Due Date: ${dataArrayList[position].period}"
         holder.pay_total.text = "Total: ${getTotalPayment(position)}"
         holder.pay_button.setOnClickListener {
-            val intent = Intent(context, PaymentActivity::class.java)
-            context.startActivity(intent)
             if (dataArrayList[position].lender != null) {
                 queryUser.queryUserData(arrayListOf(dataArrayList[position].lender!!), dataArrayList[position].id)
             }
+//            val intent = Intent(context, PaymentActivity::class.java)
+//            context.startActivity(intent)
         }
     }
 
